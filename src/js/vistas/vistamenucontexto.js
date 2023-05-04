@@ -36,8 +36,25 @@ export class VistaMenuContexto{
     @param y {Number} Coordenada y.
   **/
   mostrarEn (x, y) {
-    super.mostrar(true)
+    var alumnos=document.getElementById('divAlumnos')
+    alumnos.appendChild(this.base)
+    this.mostrar(true)
+    console.log(this.base)
+    this.base.style.position = 'absolute'
+    this.base.className = 'vistamenucontexto'
+    
     this.base.style.left = `${x - 100}px`
     this.base.style.top = `${y}px`
   }
+  /**
+    Muestra u oculta la vista.
+    @param mostrar {boolean} True para mostrar, false para ocultar.
+    @param modo {String} Valor del atributo display de CSS para mostrar la vista. Por defecto será el atributo display de la vista o 'block'.
+  **/
+    mostrar (mostrar = true, modo) {
+      if (!modo) {
+        if (!this.display) { modo = 'block' } else { modo = this.display }
+      }
+      if (mostrar) { this.base.style.display = modo } else { this.base.style.display = 'none' }
+    }
 }
