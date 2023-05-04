@@ -67,6 +67,12 @@ export class VistaAlumnos{
       this.divMenuBusqueda.appendChild(this.select)
       this.select.id='filtro'
 
+      let option1 = document.createElement('option')
+      this.select.appendChild(option1)
+      option1.value = ''
+      option1.textContent = 'Seleccione'
+      option1.disabled = 'true'
+
       let option = document.createElement('option')
       this.select.appendChild(option)
       option.value = 'todos'
