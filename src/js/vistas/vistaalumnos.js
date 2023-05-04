@@ -74,7 +74,16 @@ export class VistaAlumnos{
       
       this.cargarFiltro()
       this.select.addEventListener("change",this.cargarFiltrado.bind(this))
-      alumnos.forEach(this.crearDivAlumno.bind(this)) }
+      const div = document.createElement('div')
+      this.base.appendChild(div)
+      div.textContent = 'DUALEX'
+      div.style.fontSize = '5em'
+      div.style.textAlign = 'center'
+      div.style.fontWeight = 'bold'
+      div.style.marginTop = '20px'
+      div.style.color = 'blue'
+      div.style.borderBottom ='none'
+    }
     
   }
 
@@ -89,13 +98,20 @@ export class VistaAlumnos{
     console.log(this.modelo)
     var matcher = new RegExp('^'+texto,'i')
     console.log(matcher)
+    this.creadivs1=false
     this.modelo.getAlumnosProfesor()
     .then(alumnos => {
       for(let i=0; i<alumnos.length; i++){
         if(matcher.test(alumnos[i].nombre) || matcher.test(alumnos[i].apellidos)){
+          this.creadivs1 = true
           console.log('coincide'+alumnos[i].nombre)
           this.crearDivAlumno(alumnos[i])
         }
+      }
+      if(this.creadivs1 == false){
+        const div = document.createElement('div')
+        this.base.appendChild(div)
+        div.textContent = 'No hay ningún alumno que coincida.'
       }
     })
     .catch(error => console.log(error))
