@@ -1,0 +1,285 @@
+/* Reglas de css */
+
+body {
+	font-family: arial;
+}
+
+h1, h2{
+	color: blue;
+}
+
+h1{
+	font-size: 140%;
+	padding-bottom: 0.5em;
+}
+
+h2{
+	font-size: 120%;
+	font-style: italic;
+	padding-bottom: 0.2em;
+}
+
+fieldset{
+	border: 1px solid gray;
+	border-radius: 1rem;
+	padding: 0.5rem;
+}
+legend{
+	padding: 0 0.5rem;
+}
+
+/* Inicialmente ocultamos las vistas */
+#divLogin, #divDialogo, #divAlumnos, #divTarea, #divTareas, #divInforme, #divCreditos{
+	display: none;
+}
+
+#divLoginGoogle{
+	border: 1px solid red;
+}
+
+.icono_rectangular{
+	float: right;
+	margin: 1rem;
+	background-color: darkred;
+	cursor: pointer;
+}
+.icono_rectangular:hover{
+	float: right;
+	background-color: red;
+}
+
+#divCreditos{
+	padding: 1rem;
+	line-height: 2rem;
+}
+#divCreditos p strong{
+	font-weight: bold;
+	color: blue;
+}
+
+#divMensaje{
+	width: 60%;
+	margin: 1em auto;
+	padding: 1em;
+	font-size: 1.5em;
+	font-weight: bold;
+	border-radius: 0.3em;
+	display: none;
+}
+/* Botón de cierre del div */
+#divMensaje > span:first-child{
+	margin-right: 1rem;
+	float: right;
+	font-size: 1rem;
+	color: grey;
+	cursor: pointer;
+}
+/* Texto del mensaje */
+#divMensaje > span:nth-child(2){
+	font-size: 1rem;
+}
+#divMensaje.info{
+	background-color: blue;
+	color: white;
+}
+#divMensaje.ok{
+	background-color: green;
+	color: white;
+}
+#divMensaje.aviso{
+	background-color: orange;
+	color: white;
+}
+#divMensaje.error{
+	background-color: red;
+	color: white;
+}
+#divMenu{
+	display:flex;
+	justify-content: flex-end;
+	padding: 0.5rem;
+}
+#divMenu div.usuario{
+	position: absolute;
+	left: 1%;
+	font-size: 0.8rem;
+	color: grey;
+}
+#divMenu h1{
+	flex-grow: 2;
+	text-align: left;
+	order: 0;
+	margin: auto;
+	padding: 0.5rem;
+}
+#divMenu .icono{
+	cursor: pointer;
+	border-radius: 0.5rem;
+	transition: background-color 1s;
+	margin: 0.3rem;
+}
+#divMenu .icono:hover{
+	background-color: lightgreen;
+}
+
+#divTarea {
+	max-width: 90%;
+	margin: 2rem auto;
+	/* padding-bottom para que quepa el botón actualizar */
+	padding: 2rem 1rem 4rem 2rem;
+	border: 1px solid blue;
+	border-radius: 0.5rem;
+	box-shadow: 0.5rem 0.5rem grey;
+}
+#divTarea input{
+	margin: 0.3rem;
+}
+#divTarea input[type='text']:first-of-type{
+	width: 80%;
+}
+#divTarea input[type='number']{
+	width: 3rem;
+	margin: 0.3rem;
+}
+#divTarea .modulo{
+	padding: 0.2rem 0.3rem;
+	border: 1px solid grey;
+	border-radius: 0.3rem;
+	font-size: 0.8rem;
+}
+#divTarea label, #divTarea legend{
+	font-weight: bold;
+}
+	
+#divTarea fieldset label{
+	font-weight: normal;
+}
+#divTarea textarea{
+	margin: 0.5rem;
+	width: 80%;
+}
+#divTarea select{
+	margin: 0.5rem;
+}
+#divTarea > div:nth-of-type(2){
+	text-align: right;
+}
+
+#divTarea button{
+	cursor: pointer;
+	border: none;
+	color: white;
+	margin: 1rem;
+	padding: 0.5rem 1.5rem;
+	text-align: center;
+	text-decoration: none;
+	font-size: 1.2rem;
+}
+
+#divTarea button:hover{
+	text-decoration: underline;
+}
+#divTarea button:nth-child(1){
+	background-color: red;
+}
+#divTarea button:nth-child(2){
+	background-color: blue;
+}
+#divTarea > div:nth-of-type(1) p {
+	line-height: 2rem;
+}
+#divTarea div.alto{
+	line-height: 1.5rem;
+}
+/* Reglas de VistaLogin */
+#divLogin{
+	width: 40%;
+	margin: 5rem auto;
+	padding: 2rem;
+	border-radius: 0.5rem;
+	box-shadow: 0.5rem 0.5rem 2rem grey;
+}
+#divLogin input{
+	margin: 0.3rem;
+}
+#divLogin p{
+	font-size: 0.9rem;
+	line-height: 1.2rem;
+}
+#divLogin p.error{
+	display: none;
+	color: red;
+	font-weight: bold;
+}
+#divGoogleLogin{
+	margin: 0.5rem;
+}
+
+/* Reglas de VistaAlumnos */
+#divAlumnos {
+	max-width: 90%;
+	margin: 1rem;
+ 	padding: 2rem;
+}
+#divAlumnos>div {
+	border-bottom: 1px solid lightgrey;
+	height: 1.3rem;
+	margin-bottom: 0.7rem;
+}
+#divAlumnos .ciclo{
+	border-radius: 0.5rem;
+	padding: 0.1rem 0.3rem;
+	margin: 0 0.2rem;
+	cursor: help;
+}
+#divAlumnos .iconos{
+	float: right;
+}
+#divAlumnos .icono{
+	display: inline;
+	width: 1.5rem;
+	cursor: pointer;
+}
+#divAlumnos .icono:hover{
+	background-color: lightblue;
+	border-radius: 0.7rem;
+}
+
+
+#buscador{
+	margin-left: 40%;
+	margin-bottom: 50px;
+	margin-right: 2px;
+}
+
+#filtro{
+	margin-left: 20px;
+	width:150px;
+}
+#btnBuscar{
+	background-color: white;
+}
+#divMenuBusqueda{
+	margin-bottom: 21px!important;
+    border-bottom-color: white!important;
+}
+
+/* Reglas de VistaMenuContexto */
+.vistamenucontexto{
+	display: none;
+	position: absolute;
+	height: auto !important;
+	z-index: 1;
+ 	border-radius: 0.5rem;
+ 	box-shadow: 0.1rem 0.1rem 0.1rem grey;
+	background-color: whitesmoke;
+	padding: 1rem;
+	line-height: 1.5rem;
+}
+.vistamenucontexto a {
+	color: blue;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+
