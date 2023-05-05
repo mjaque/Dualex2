@@ -2,7 +2,7 @@
   Vista de diálogos modales de la aplicación.
   Se muestran sobre un fondo oscuro semitransparente.
 **/
-import { Vista } from '../vista.js'
+import { Vista } from './vista.js'
 
 export class VistaDialogo extends Vista {
   /**
@@ -13,25 +13,18 @@ export class VistaDialogo extends Vista {
   constructor (controlador, base) {
     super(controlador)
     this.base = base
-    this.base.classList.add(this.getNombreClase())
     this.callback = null // Función que se llamará al cerrar el diálogo.
-  }
 
-  iniciar () {
-    // Cogemos referencias a los elementos del interfaz
-    this.btnCerrar = this.doc.getElementsByTagName('span')[0]
-    this.hTitulo = this.doc.getElementsByTagName('h2')[0]
-    this.pMensaje = this.doc.getElementsByTagName('p')[0]
-    this.btnCancelar = this.doc.getElementsByTagName('button')[0]
-    this.btnAceptar = this.doc.getElementsByTagName('button')[1]
+    this.btnCerrar = this.base.getElementsByTagName('span')[0]
+    this.hTitulo = this.base.getElementsByTagName('h2')[0]
+    this.pMensaje = this.base.getElementsByTagName('p')[0]
+    this.btnCancelar = this.base.getElementsByTagName('button')[0]
+    this.btnAceptar = this.base.getElementsByTagName('button')[1]
 
     // Asociamos eventos
     this.btnCerrar.onclick = this.cerrar.bind(this)
     this.btnCancelar.onclick = this.cerrar.bind(this)
     this.btnAceptar.onclick = this.aceptar.bind(this)
-
-    super.transferir(this.base, this.doc)
-    super.cargarCSS(`${this.getNombreClase()}.css`)
   }
 
   /**

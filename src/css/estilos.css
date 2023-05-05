@@ -282,4 +282,231 @@ legend{
 	cursor: pointer;
 }
 
+/* Reglas de VistaTareas */
+#divTareas {
+	max-width: 90%;
+  	margin: 1rem;
+  	padding: 2rem;
+}
+#divTareas>div {
+  	margin-bottom: 0.5rem;
+	border-bottom: 1px solid lightgrey;
+	min-height: 1.5rem;
+}
+#divTareas .icono_grande{
+	position: fixed;
+	top: 2%;
+	left: 90%;
+	background-color: blue;
+	border-radius: 2rem;
+	cursor: pointer;
+	transition: transform .7s ease-in-out;
+}
+#divTareas .icono_grande:hover{
+	transform: rotate(180deg);
+}
+#divTareas .iconos{
+	position: absolute;
+	right: 2%;
+	white-space: nowrap;
+}
+#divTareas .icono{
+	display: inline;
+	width: 1.5rem;
+	cursor: pointer;
+}
+#divTareas .icono:hover{
+	background-color: lightblue;
+  	border-radius: 0.7rem;
+}
+#divTareas .modulo{
+	font-size: 0.8rem;
+	margin: 0 0.3rem;
+	padding: 0.2rem;
+	border-radius: 0.2rem;
+}
+#divTareas .tarea{
+	margin-right: 20%;	/* Para dejar espacio a los iconos */
+	line-height: 1.5rem;
+}
+#divTareas .tarea_pendiente{
+	font-weight: bold;
+	color: red;
+}
+
+/* Reglas de VistaDialogo */
+#divDialogo{
+  /* Ref. https://www.w3schools.com/howto/howto_css_modals.asp */
+  display: none;
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+}
+#divDialogo > div{
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 2rem;
+  border: 1px solid #888;
+  border-radius: 0.5rem;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+#divDialogo span {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+#divDialogo span:hover, #divDialogo span:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+#divDialogo button{
+  cursor: pointer;
+  border: none;
+  margin: 1rem;
+  margin-left: 5rem;
+  padding: 0.5rem 1.5rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1.2rem;
+}
+#divDialogo button:nth-of-type(1){
+  background-color: green;
+  color: white;
+}
+#divDialogo button:nth-of-type(2){
+  background-color: red;
+  color: white;
+}
+#divDialogo button:hover{
+  text-decoration: underline;
+}
+
+/* Reglas de VistaInforme */
+#divInforme{
+	margin: 1cm;
+}
+#divInforme > h1{
+	text-align: center;
+	color: blue;
+	font-weight: bold;
+}
+#divInforme div{
+	border: 1px solid black;
+	padding: 0.5rem;
+}
+#divInforme strong{
+	font-weight: bold;
+}
+#divInforme .derecha{
+	float: right;
+}
+#divInforme div.contenedor-grid{
+	padding: 0px;
+}
+#divInforme div.contenedor-grid > p{
+	padding: 0.3rem;
+}
+#divInforme div.grid1{
+	display: grid; 
+	grid-template-columns: 45% 5% 45% 5%; 
+	padding: 0px;
+}
+#divInforme div.grid1 > div:nth-child(2n){
+	font-weight: bold;
+	text-align: center;
+}
+#divInforme div.grid2{
+	display: grid; 
+	grid-template-columns: 40% 20% 20% 20%; 
+	border: none;
+}
+#divInforme div.grid2 div{
+	padding: 0.1rem;
+}
+#divInforme div.grid2 > div:nth-child(2n), #divInforme div.grid2 > div:nth-child(4n+3){
+	text-align: center;
+}
+#divInforme div.grid3{
+	display: grid; 
+	grid-template-columns: 45% 5% 45% 5%; 
+	border: none;
+}
+#divInforme div.grid3 div{
+	padding: 0.1rem;
+}
+#divInforme div.grid3 > div:nth-child(2n){
+	text-align: center;
+}
+#divInforme div.grid3 em{
+	font-style: italic;
+	font-size: 0.8rem;
+}
+#divInforme table{
+	margin: 2rem auto;
+}
+#divInforme td, #divInforme th{
+	border: 1px solid black;
+	padding: 0.2rem;
+}
+#divInforme th{
+	font-weight: bold;
+	background-color: lightgrey;
+}
+#divInforme tbody:nth-child(2){
+	text-align: center;
+}
+#divInforme .modulo{
+	font-size: 0.8rem;
+	margin: 0 0.3rem;
+	padding: 0.2rem;
+	border-radius: 0.2rem;
+}
+@page {
+	margin: 0; /* Quita el encabezado y pie que pone el navegador */
+	size: A4;
+}	
+
+@media print{
+	#divLogin, #divDialogo, #divMenu {
+		display: none !important;
+	}
+	#divInforme{
+		font-size: 0.7rem;
+		/* Para evitar que el navegador ahorre tinta en los fondos */
+		/* print-color-adjust: exact; */
+	}
+	.informe > div{
+		padding: 0.2rem 0.5rem;
+	}
+	.informe div.grid1 {
+		padding: 0;
+	}
+	.informe div.grid1 > div:nth-child(2n+1){
+		font-size: 0.5rem;
+	}
+	.informe textarea, .informe input[type='text']{
+		border: none;
+	}
+	#divInforme .modulo{
+		font-size: 0.5rem;
+		margin: 0 0.2rem;
+		padding: 0 0.2rem;
+		background-color: none !important;	
+	}
+	#divInforme .modulo::before{
+		content: "(";
+	}
+	#divInforme .modulo::after{
+		content: ")";
+	}
+}
 

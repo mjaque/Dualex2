@@ -7,18 +7,18 @@ import { Modelo } from './modelos/modelo.js'
 
 // Vistas
 import { VistaLogin } from './vistas/vistalogin.js'
-import { VistaDialogo } from './vistas/vistadialogo/vistadialogo.js'
+import { VistaDialogo } from './vistas/vistadialogo.js'
 import { VistaMensaje } from './vistas/vistamensaje.js'
 import { VistaMenu } from './vistas/vistamenu.js'
 
 // Vista de tareas del alumno
-import { VistaTareas } from './vistas/vistatareas/vistatareas.js'
+import { VistaTareas } from './vistas/vistatareas.js'
 // Detalle de Tarea
 import { VistaTarea } from './vistas/vistatarea.js'
 // Listado de Alumnos
 import { VistaAlumnos } from './vistas/vistaalumnos.js'
 // Informe de Alumno
-import { VistaInforme } from './vistas/vistainforme/vistainforme.js'
+import { VistaInforme } from './vistas/vistainforme.js'
 // Créditos
 import { VistaCreditos } from './vistas/vistacreditos.js'
 

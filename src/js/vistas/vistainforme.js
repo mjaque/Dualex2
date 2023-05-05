@@ -1,7 +1,7 @@
 /**
   Vista con el Informe de Alumno (imprimible).
 **/
-import { Vista } from '../vista.js'
+import { Vista } from './vista.js'
 
 export class VistaInforme extends Vista {
   /**
@@ -12,31 +12,22 @@ export class VistaInforme extends Vista {
   constructor (controlador, base) {
     super(controlador)
     this.base = base
-    this.base.classList.add(this.getNombreClase())
     this.callback = null // Función que se llamará al cerrar el diálogo.
-  }
 
-  /**
-    Inicia la vista.
-    Obtiene las referencias a los elementos del interfaz, captura los eventos, transfiere la plantilla al documento principal...
-  **/
-  iniciar () {
     // Cogemos referencias a los elementos del interfaz
-    this.sAlumno = this.doc.querySelector("span[data-informe='alumno']")
-    this.sCoordinador = this.doc.querySelector("span[data-informe='coordinador']")
-    this.sGrado = this.doc.querySelector("span[data-informe='grado']")
-    this.sCiclo = this.doc.querySelector("span[data-informe='ciclo']")
-    this.sPeriodo = this.doc.querySelector("span[data-informe='periodo']")
-    this.divValoracion = this.doc.querySelector('.grid1')
-    this.divEvaluacion = this.doc.querySelector('.grid3')
-    this.inputTexts = this.doc.querySelectorAll('input[type="text"]')
-    this.inputRadios = this.doc.querySelectorAll('input[type="radio"]')
-    this.textAreas = this.doc.querySelectorAll('textarea')
+    this.sAlumno = this.base.querySelector("span[data-informe='alumno']")
+    this.sCoordinador = this.base.querySelector("span[data-informe='coordinador']")
+    this.sGrado = this.base.querySelector("span[data-informe='grado']")
+    this.sCiclo = this.base.querySelector("span[data-informe='ciclo']")
+    this.sPeriodo = this.base.querySelector("span[data-informe='periodo']")
+    this.divValoracion = this.base.querySelector('.grid1')
+    this.divEvaluacion = this.base.querySelector('.grid3')
+    this.inputTexts = this.base.querySelectorAll('input[type="text"]')
+    this.inputRadios = this.base.querySelectorAll('input[type="radio"]')
+    this.textAreas = this.base.querySelectorAll('textarea')
 
     // Asociamos eventos
 
-    super.transferir(this.base, this.doc)
-    super.cargarCSS(`${this.getNombreClase()}.css`)
   }
 
   /**
