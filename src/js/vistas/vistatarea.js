@@ -2,14 +2,16 @@
 Vista con los datos de una tarea.
 **/
 
-export class VistaTarea {
+import { Vista } from './vista.js'
+
+export class VistaTarea extends Vista{
   /**
   Constructor de la clase.
   @param {Object} controlador Controlador de la vista.
   @param {Node} base Nodo al que se añadirá la vista.
   **/
   constructor (controlador, base) {
-    this.controlador = controlador
+	super(controlador)
     this.base = base
     this.callback = null // Función que se llamará al cerrar el diálogo.
 
@@ -151,7 +153,7 @@ export class VistaTarea {
         this.cargarCalificaciones()
       }
     }
-    this.mostrar2(ver)
+    super.mostrar(ver)
   }
 
   /**
@@ -265,26 +267,5 @@ export class VistaTarea {
   **/
   cancelar () {
     this.controlador.mostrarTareasAlumno()
-  }
-
-  /**
-    Muestra u oculta la vista.
-    @param mostrar {boolean} True para mostrar, false para ocultar.
-    @param modo {String} Valor del atributo display de CSS para mostrar la vista. Por defecto será el atributo display de la vista o 'block'.
-  **/
-    mostrar2 (mostrar = true, modo) {
-      if (!modo) {
-        if (!this.display) { modo = 'block' } else { modo = this.display }
-      }
-      if (mostrar) { this.base.style.display = modo } else { this.base.style.display = 'none' }
-    }
-
-    /**
-    Elimina todos los nodos hijos de un nodo.
-    @param nodo {Node} Nodo del que se eliminarán los hijos.
-  @param desde {Number} Índice del nodo desde el que se eliminarán los hijos. Indicando desde = 1, se salva al primer hijo (nodo 0).
-  **/
-  eliminarHijos (nodo, desde = 0) {
-    while (nodo.childNodes.length > desde) { nodo.removeChild(nodo.childNodes.item(desde)) }
   }
 }

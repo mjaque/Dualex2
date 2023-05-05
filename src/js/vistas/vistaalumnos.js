@@ -1,21 +1,21 @@
 /**
   Vista con el listado de alumnos de un profesor.
 **/
+import { Vista } from './vista.js'
 import { VistaMenuContexto } from './vistamenucontexto.js'
 // Modelos
 import { Modelo } from '../modelos/modelo.js'
 
-export class VistaAlumnos{
+export class VistaAlumnos extends Vista{
   /**
     Constructor de la clase.
     @param {Object} controlador Controlador de la vista.
     @param {Node} base Nodo al que se añadirá la vista.
   **/
   constructor (controlador, base) {
-    this.controlador = controlador
+	super(controlador)
     this.base = base
     this.modelo=new Modelo()
-    this.display = 'block'
     this.callback = null // Función que se llamará al cerrar el diálogo.
    
     // Creamos la subvista del menú de contexto
@@ -40,11 +40,8 @@ export class VistaAlumnos{
     Carga los alumnos.
   **/
   cargar (alumnos) {
-    console.log(this.base.childNodes)
     //Eliminamos los hijos, menos el primero
-    while (this.base.childNodes.length > 1) {
-      this.base.removeChild(this.base.childNodes.item(1)) 
-    }
+	this.eliminarHijos(this.base, 1)
 
     if (!alumnos) {
       this.base.appendChild(document.createTextNode('No tiene alumnos en sus módulos.')) 
@@ -97,9 +94,7 @@ export class VistaAlumnos{
    * Carga la búsqueda realizada en el buscador
    */
   cargarBusqueda(){
-    while (this.base.childNodes.length > 2) {
-      this.base.removeChild(this.base.childNodes.item(2)) 
-    }
+	this.eliminarHijos(this.base, 2)
     let texto= document.getElementById('buscador').value
     console.log(this.modelo)
     var matcher = new RegExp('^'+texto,'i')
@@ -121,8 +116,6 @@ export class VistaAlumnos{
       }
     })
     .catch(error => console.log(error))
-    
-    
   }
 
   /**
@@ -141,17 +134,13 @@ export class VistaAlumnos{
       }
     })
     .catch(error => console.log(error))
-      
   }
 
   /**
    * Carga la lista de alumnos filtrada según lo seleccionado
    */
   cargarFiltrado(){
-    
-    while (this.base.childNodes.length > 2) {
-      this.base.removeChild(this.base.childNodes.item(2)) 
-    }
+   	this.eliminarHijos(this.base, 2) 
     this.modelo.getAlumnosProfesor()
     .then(alumnos => {
       if(this.select.value=='todos'){
@@ -174,7 +163,6 @@ export class VistaAlumnos{
         }
       }
     })
-    
   }
 
   /**
@@ -272,15 +260,4 @@ export class VistaAlumnos{
     this.vistaMenuContexto.base.style.display = 'none'
   }
 
-  /**
-    Muestra u oculta la vista.
-    @param mostrar {boolean} True para mostrar, false para ocultar.
-    @param modo {String} Valor del atributo display de CSS para mostrar la vista. Por defecto será el atributo display de la vista o 'block'.
-  **/
-  mostrar (mostrar = true, modo) {
-    if (!modo) {
-      if (!this.display) { modo = 'block' } else { modo = this.display }
-    }
-    if (mostrar) { this.base.style.display = modo } else { this.base.style.display = 'none' }
-  }
 }

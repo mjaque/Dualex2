@@ -2,8 +2,9 @@
   Vista de mensajes de la aplicación.
   Muestra los mensajes de la aplicación.
 **/
+import { Vista } from './vista.js'
 
-export class VistaMensaje{
+export class VistaMensaje extends Vista{
   static INFO = 'info'
   static OK = 'ok'
   static AVISO = 'aviso'
@@ -14,7 +15,7 @@ export class VistaMensaje{
     @param {Node} base Nodo al que se añadirá la vista principal.
   **/
   constructor (controlador, base) {
-    this.controlador=controlador
+	super(controlador)
     this.base = base
   
     // Cogemos referencias a los elementos del interfaz

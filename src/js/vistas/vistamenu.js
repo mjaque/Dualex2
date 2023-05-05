@@ -3,17 +3,17 @@
   Muestra los enlaces de contexto.
 **/
 
+import { Vista } from './vista.js'
 
-export class VistaMenu{
+export class VistaMenu extends Vista{
   /**
     Constructor de la clase.
     @param {Object} controlador Controlador de la vista principal.
     @param {Node} base Nodo al que se añadirá la vista principal.
   **/
   constructor (controlador, base) {
-    this.controlador = controlador
+	super(controlador, 'flex')
     this.base = base
-    this.display = 'flex'
   
     // Cogemos referencias a los elementos del interfaz
 
@@ -98,7 +98,7 @@ export class VistaMenu{
     Elimina los elementos del menú.
   **/
   limpiar () {
-    while (this.base.childNodes.length > 0) { this.base.removeChild(this.base.childNodes.item(0)) }  
+	this.eliminarHijos(this.base)
   }
 
   /**
@@ -165,16 +165,4 @@ export class VistaMenu{
   crearIconoAyuda (texto) {
     return this.crearIcono('help.svg', null, texto)
   }
-
-  /**
-    Muestra u oculta la vista.
-    @param mostrar {boolean} True para mostrar, false para ocultar.
-    @param modo {String} Valor del atributo display de CSS para mostrar la vista. Por defecto será el atributo display de la vista o 'block'.
-  **/
-    mostrar (mostrar = true, modo) {
-      if (!modo) {
-        if (!this.display) { modo = 'block' } else { modo = this.display }
-      }
-      if (mostrar) { this.base.style.display = modo } else { this.base.style.display = 'none' }
-    }
 }

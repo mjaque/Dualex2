@@ -1,16 +1,17 @@
 /**
   Vista de Login
 **/
-export class VistaLogin{
+import { Vista } from './vista.js'
+
+export class VistaLogin extends Vista{
   /**
     Constructor de la clase.
     @param {Object} controlador Controlador de la vista principal.
     @param {Node} base Nodo al que se añadirá la vista principal.
   **/
   constructor (controlador, base) {
-    this.controlador = controlador
+	super(controlador)
     this.base = base
-    this.display = 'block'
 
     // Cogemos referencias a los elementos del interfaz
     this.pError = this.base.getElementsByTagName('p')[1]
@@ -36,17 +37,6 @@ export class VistaLogin{
       { theme: 'outline', size: 'large' } // customization attributes
     )
     // google.accounts.id.prompt(); // also display the One Tap dialog
-  }
-  /**
-    Muestra u oculta la vista.
-    @param mostrar {boolean} True para mostrar, false para ocultar.
-    @param modo {String} Valor del atributo display de CSS para mostrar la vista. Por defecto será el atributo display de la vista o 'block'.
-  **/
-  mostrar (mostrar = true, modo) {
-    if (!modo) {
-      if (!this.display) { modo = 'block' } else { modo = this.display }
-    }
-    if (mostrar) { this.base.style.display = modo } else { this.base.style.display = 'none' }
   }
 
   /**
