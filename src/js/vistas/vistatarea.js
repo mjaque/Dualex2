@@ -14,17 +14,16 @@ export class VistaTarea {
     this.callback = null // Función que se llamará al cerrar el diálogo.
 
     // Cogemos referencias a los elementos del interfaz
-    this.iTitulo = document.getElementsByTagName('input')[0]
-    console.log(this.iTitulo)
-    this.iFecha = document.getElementsByTagName('input')[1]
-    this.taDescripcion =  document.getElementsByTagName('textarea')[0]
-    this.divActividades =  document.querySelector('fieldset div')
-    this.sCalificacion = document.getElementsByTagName('select')[0]
-    this.taComentarioCalificacionEmpresa =  document.getElementsByTagName('textarea')[1]
-    this.divEvaluaciones =  document.querySelectorAll('body > div')[0]
-    this.divBotones = document.querySelectorAll('body > div')[1]
-    this.btnCancelar =  document.getElementsByTagName('button')[0]
-    this.btnAceptar =  document.getElementsByTagName('button')[1]
+    this.iTitulo = this.base.getElementsByTagName('input')[0]
+    this.iFecha = this.base.getElementsByTagName('input')[1]
+    this.taDescripcion =  this.base.getElementsByTagName('textarea')[0]
+    this.divActividades =  this.base.querySelectorAll('div')[0] //Primer div dentro de divTarea
+    this.sCalificacion = this.base.getElementsByTagName('select')[0]
+    this.taComentarioCalificacionEmpresa =  this.base.getElementsByTagName('textarea')[1]
+    this.divEvaluaciones =  this.base.querySelectorAll('div')[1]	//Es el segundo div dentro de divTarea
+    this.divBotones = this.base.querySelectorAll('div')[2]	//Tercer div dentro de divTarea
+    this.btnCancelar =  this.base.getElementsByTagName('button')[0]
+    this.btnAceptar =  this.base.getElementsByTagName('button')[1]
 
     // Asociamos eventos
     this.btnAceptar.onclick = this.aceptar.bind(this)
