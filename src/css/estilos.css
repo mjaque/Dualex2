@@ -247,21 +247,69 @@ legend{
 
 
 #buscador{
-	margin-left: 40%;
+	margin-left: 37%;
 	margin-bottom: 50px;
 	margin-right: 2px;
+	background-color: white;
+	border:1px solid black;
+	border-radius: 5px;
+	padding-left: 11px;
 }
-
 #filtro{
 	margin-left: 20px;
 	width:150px;
+	background-color: white;
+	border:1px solid black;
+	border-radius: 10px;
+	padding-left: 11px;
 }
 #btnBuscar{
 	background-color: white;
+	border:1px solid black;
+	border-radius: 3px;
 }
 #divMenuBusqueda{
 	margin-bottom: 21px!important;
     border-bottom-color: white!important;
+}
+@media (max-width: 1056px) {
+	#buscador{
+		margin-left: 25%;
+		margin-bottom: 50px;
+		margin-right: 2px;
+	}
+}
+@media (max-width: 700px) {
+	#buscador{
+		margin-left: 20%;
+		margin-bottom: 50px;
+		margin-right: 2px;
+	}
+}
+@media (max-width: 600px) {
+	#buscador{
+		margin-left: 10%;
+		margin-bottom: 50px;
+		margin-right: 2px;
+	}
+}
+@media (max-width: 500px) {
+	#buscador{
+		margin-bottom: 10px;
+		margin-right: 2px;
+		
+	}
+	#filtro{
+		margin-left: 10% !important;
+		display: block;
+		width:150px;
+		margin-bottom: 50px;
+	}
+	#divMenuBusqueda{
+		margin-bottom: 40px!important;
+		border-bottom-color: white!important;
+	}
+	
 }
 
 /* Reglas de VistaMenuContexto */

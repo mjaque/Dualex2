@@ -76,7 +76,8 @@ export class VistaTarea extends Vista{
         const iCalificacion = document.createElement('input')
         div.appendChild(iCalificacion)
         iCalificacion.value = modulo.calificacion
-        iCalificacion.setAttribute('type', 'number')
+        iCalificacion.setAttribute('type', 'checkbox')
+        iCalificacion.setAttribute('value', '1')
         div.modulo = modulo
         div.appendChild(document.createElement('br'))
         const taEvaluacion = document.createElement('textarea')

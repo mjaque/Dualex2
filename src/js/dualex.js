@@ -280,6 +280,14 @@ class DualEx {
     this.ocultarVistas()
     this.vistaCreditos.mostrar(true)
   }
+
+  getCursos(){
+    return this.modelo.getCursos()
+  }
+
+  getAlumnosProfesor(){
+    return this.modelo.getAlumnosProfesor()
+  }
 }
 
 /* eslint-disable no-new */

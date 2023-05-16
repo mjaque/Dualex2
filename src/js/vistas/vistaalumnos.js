@@ -3,8 +3,7 @@
 **/
 import { Vista } from './vista.js'
 import { VistaMenuContexto } from './vistamenucontexto.js'
-// Modelos
-import { Modelo } from '../modelos/modelo.js'
+
 
 export class VistaAlumnos extends Vista{
   /**
@@ -15,7 +14,6 @@ export class VistaAlumnos extends Vista{
   constructor (controlador, base) {
 	super(controlador)
     this.base = base
-    this.modelo=new Modelo()
     this.callback = null // Función que se llamará al cerrar el diálogo.
    
     // Creamos la subvista del menú de contexto
@@ -56,9 +54,13 @@ export class VistaAlumnos extends Vista{
       input.type='text'
       let boton=document.createElement('button')
       boton.id='btnBuscar'
-      boton.textContent='🔍'
       this.divMenuBusqueda.appendChild(boton)
       boton.addEventListener('click', this.cargarBusqueda.bind(this))
+
+      let imagen=document.createElement('img');
+      imagen.src = "./iconos/search.svg"
+      imagen.style.width = "15px"
+      boton.appendChild(imagen)
 
       this.select = document.createElement('select')
       this.divMenuBusqueda.appendChild(this.select)
@@ -79,7 +81,7 @@ export class VistaAlumnos extends Vista{
       this.select.addEventListener("change",this.cargarFiltrado.bind(this))
       const div = document.createElement('div')
       this.base.appendChild(div)
-      div.textContent = 'DUALEX'
+      div.textContent = 'DUALEX Aplicación para la gestión de la evaluación'
       div.style.fontSize = '5em'
       div.style.textAlign = 'center'
       div.style.fontWeight = 'bold'
@@ -96,11 +98,10 @@ export class VistaAlumnos extends Vista{
   cargarBusqueda(){
 	this.eliminarHijos(this.base, 2)
     let texto= document.getElementById('buscador').value
-    console.log(this.modelo)
     var matcher = new RegExp('^'+texto,'i')
     console.log(matcher)
     this.creadivs1=false
-    this.modelo.getAlumnosProfesor()
+    this.controlador.getAlumnosProfesor()
     .then(alumnos => {
       for(let i=0; i<alumnos.length; i++){
         if(matcher.test(alumnos[i].nombre) || matcher.test(alumnos[i].apellidos)){
@@ -123,7 +124,8 @@ export class VistaAlumnos extends Vista{
    */
   cargarFiltro(){
     this.cursos = []
-    this.modelo.getCursos()
+    console.log(this.controlador)
+    this.controlador.getCursos()
     .then(cursos => {
       for(let i=0; i<cursos.length; i++){
         this.cursos[i]=cursos[i]
@@ -141,7 +143,8 @@ export class VistaAlumnos extends Vista{
    */
   cargarFiltrado(){
    	this.eliminarHijos(this.base, 2) 
-    this.modelo.getAlumnosProfesor()
+    console.log(this.controlador)
+    this.controlador.getAlumnosProfesor()
     .then(alumnos => {
       if(this.select.value=='todos'){
         for(let i=0; i<alumnos.length; i++){
