@@ -565,4 +565,9 @@ legend{
 #btn_aceptar_siguiente{
 	background-color: green;
 }
+span.alumno:hover{
+	color:blue;
+	cursor: pointer;
+	font-weight: bold;
+}
 
