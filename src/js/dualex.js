@@ -42,6 +42,7 @@ class DualEx {
   **/
   iniciar () {
     this.modelo = new Modelo()
+    this.alumno = null
     this.vistaLogin = new VistaLogin(this, document.getElementById('divLogin'))
     this.vistaDialogo = new VistaDialogo(this, document.getElementById('divDialogo'))
     this.vistaMensaje = new VistaMensaje(this, document.getElementById('divMensaje'))
@@ -123,10 +124,18 @@ class DualEx {
     @param alumno {Alumno} Datos del alumno.
   **/
   mostrarTareasAlumno (alumno) {
+    this.alumno = alumno
     // Para saber volver cuando sea el profesor
     if (this.#usuario.rol === 'profesor') {
-      if (!alumno) { alumno = this.alumnoMostrado } else { this.alumnoMostrado = alumno }
+      if (!alumno) {
+        alumno = this.alumnoMostrado 
+        this.alumno = this.alumnoMostrado
+      } 
+      else {
+        this.alumnoMostrado = alumno
+      }
     }
+   
     if (alumno == null) { alumno = this.#usuario }
     this.ocultarVistas()
     this.modelo.getTareasAlumno(alumno)
@@ -288,6 +297,11 @@ class DualEx {
   getAlumnosProfesor(){
     return this.modelo.getAlumnosProfesor()
   }
+
+  traerTareas(){
+    return this.modelo.getTareasAlumno(this.alumno)
+  }
+  
 }
 
 /* eslint-disable no-new */

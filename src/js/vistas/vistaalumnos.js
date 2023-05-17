@@ -189,7 +189,7 @@ export class VistaAlumnos extends Vista{
     div.appendChild(spanAlumno)
     spanAlumno.classList.add('alumno')
     spanAlumno.textContent = `${alumno.nombre} ${alumno.apellidos}`
-    // spanAlumno.onclick = this.pulsarAlumno.bind(this, alumno)
+    spanAlumno.onclick = this.pulsarTareas.bind(this, alumno)
 
     // TODO: Refactorizar para evitar DRY.
     const spanIconos = document.createElement('span')

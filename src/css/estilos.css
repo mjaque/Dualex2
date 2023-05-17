@@ -558,3 +558,11 @@ legend{
 	}
 }
 
+#btn_tarea_anterior{
+	background-color: orange;
+	float: left;
+}
+#btn_aceptar_siguiente{
+	background-color: green;
+}
+

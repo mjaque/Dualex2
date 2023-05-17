@@ -15,6 +15,7 @@ export class VistaTarea extends Vista{
     this.base = base
     this.callback = null // Función que se llamará al cerrar el diálogo.
 
+
     // Cogemos referencias a los elementos del interfaz
     this.iTitulo = this.base.getElementsByTagName('input')[0]
     this.iFecha = this.base.getElementsByTagName('input')[1]
@@ -26,13 +27,20 @@ export class VistaTarea extends Vista{
     this.divBotones = this.base.querySelectorAll('div')[2]	//Tercer div dentro de divTarea
     this.btnCancelar =  this.base.getElementsByTagName('button')[0]
     this.btnAceptar =  this.base.getElementsByTagName('button')[1]
+    this.btnAnterior =  this.base.getElementsByTagName('button')[2]
+    this.btnSiguiente =  this.base.getElementsByTagName('button')[3]
 
     // Asociamos eventos
     this.btnAceptar.onclick = this.aceptar.bind(this)
     this.btnCancelar.onclick = this.cancelar.bind(this)
+    this.btnSiguiente.addEventListener('click', this.aceptarYSiguiente.bind(this))
+    this.btnAnterior.addEventListener('click', this.anterior.bind(this))
+    
 
     // Referencia a la tarea que se está mostrando
     this.tarea = null
+    this.array = null
+    this.x = 0
   }
 
   /**
@@ -99,6 +107,7 @@ export class VistaTarea extends Vista{
     TODO: Refactorizar con vistatareas.js
   **/
   crearSpanModulo (div, modulo, index, array) {
+    this.array = array
     const span = document.createElement('span')
     div.appendChild(span)
     span.classList.add('modulo')
@@ -269,4 +278,41 @@ export class VistaTarea extends Vista{
   cancelar () {
     this.controlador.mostrarTareasAlumno()
   }
+
+  /**
+    Recoge los datos de la tarea, guarda en bbdd y muestra la tarea siguiente
+  **/
+    async aceptarYSiguiente(){
+      this.works = await this.controlador.traerTareas()
+      for(let i=0;i<this.works.length;i++){
+        if(this.taDescripcion.value == this.works[i].descripcion){
+            console.log(this.taDescripcion.value)
+            this.x = i
+        }
+      }
+      this.x++
+      /*console.log(this.x)
+      console.log(this.works[this.x])*/
+      this.setTarea(this.works[this.x])
+      window.scroll(0,0)
+    }
+
+    /**
+    Recoge los datos de la tarea, guarda en bbdd y muestra la tarea anterior
+  **/
+    async anterior(){
+      this.works = await this.controlador.traerTareas()
+      for(let i=0;i<this.works.length;i++){
+        if(this.taDescripcion.value == this.works[i].descripcion){
+            console.log(this.taDescripcion.value)
+            this.x = i
+        }
+      }
+      this.x--
+      /*console.log(this.x)
+      console.log(this.works[this.x])*/
+      this.setTarea(this.works[this.x])
+      window.scroll(0,0)
+      
+    }
 }
