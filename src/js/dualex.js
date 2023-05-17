@@ -154,6 +154,7 @@ class DualEx {
     @param periodo {Number} Número del periodo del que se solicita el informe
   **/
   mostrarInformeAlumno (alumno, periodo) {
+    this.alumno = alumno
     if (this.#usuario.rol !== 'profesor') return
     this.ocultarVistas()
     this.modelo.getInformeAlumno(alumno, periodo)

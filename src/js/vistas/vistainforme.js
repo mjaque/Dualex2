@@ -26,8 +26,8 @@ export class VistaInforme extends Vista {
     this.inputRadios = this.base.querySelectorAll('input[type="radio"]')
     this.textAreas = this.base.querySelectorAll('textarea')
 
+    this.tareas = null
     // Asociamos eventos
-
   }
 
   /**
@@ -46,6 +46,7 @@ export class VistaInforme extends Vista {
     this._crearGrid(informe.valoracion, this.divValoracion)
     this._anadirModulos(informe.modulos, this.divValoracion)
     this._crearGrid(informe.evaluacion, this.divEvaluacion)
+    this.ponerNotas()
   }
 
   /**
@@ -99,6 +100,7 @@ export class VistaInforme extends Vista {
       const div2 = document.createElement('div')
       div.appendChild(div2)
       div2.textContent = dato.calificacion
+      
     }
   }
 
@@ -113,5 +115,11 @@ export class VistaInforme extends Vista {
       span.style.backgroundColor = modulo.color_fondo
       span.style.color = modulo.color_letra
     }
+  }
+
+  async ponerNotas(){
+    this.tareas = await this.controlador.traerTareas()
+    console.log(this.tareas)
+    console.log(this.sPeriodo.textContent)
   }
 }

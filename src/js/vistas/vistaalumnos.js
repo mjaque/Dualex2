@@ -81,13 +81,23 @@ export class VistaAlumnos extends Vista{
       this.select.addEventListener("change",this.cargarFiltrado.bind(this))
       const div = document.createElement('div')
       this.base.appendChild(div)
-      div.textContent = 'DUALEX Aplicación para la gestión de la evaluación'
+      div.textContent = 'DUALEX'
       div.style.fontSize = '5em'
       div.style.textAlign = 'center'
       div.style.fontWeight = 'bold'
       div.style.marginTop = '20px'
       div.style.color = 'blue'
       div.style.borderBottom ='none'
+
+      const div2 = document.createElement('div')
+      this.base.appendChild(div2)
+      div2.textContent = 'Aplicación para la gestión de la evaluación'
+      div2.style.fontSize = '3em'
+      div2.style.textAlign = 'center'
+      div2.style.fontWeight = 'bold'
+      div2.style.marginTop = '60px'
+      div2.style.color = 'blue'
+      div2.style.borderBottom ='none'
     }
     
   }
