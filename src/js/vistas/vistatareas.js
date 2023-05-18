@@ -76,6 +76,7 @@ export class VistaTareas extends Vista {
     const spanTarea = document.createElement('span')
     div.appendChild(spanTarea)
     spanTarea.classList.add('tarea')
+    spanTarea.onclick = this.pulsarEditar.bind(this, tarea)
     // Si es profesor, ponemos el aviso de tarea pendiente de corrección
     if (this.controlador.getUsuario().rol === 'profesor') {
       if (!tarea.calificacion_profesor) {
