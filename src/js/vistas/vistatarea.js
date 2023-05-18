@@ -220,7 +220,7 @@ export class VistaTarea extends Vista{
           this.sCalificacion.appendChild(option)
           option.setAttribute('value', calificacion.id)
           option.setAttribute('title', calificacion.descripcion)
-          if (this.controlador.getUsuario().rol === 'profesor') { option.textContent = calificacion.titulo + ' (' + calificacion.valor + ')' } else { option.textContent = calificacion.titulo }
+          if (this.controlador.getUsuario().rol === 'profesor') { option.textContent = calificacion.titulo} else { option.textContent = calificacion.titulo }
         }
       })
   }
