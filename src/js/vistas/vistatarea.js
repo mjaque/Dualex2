@@ -18,7 +18,8 @@ export class VistaTarea extends Vista{
 
     // Cogemos referencias a los elementos del interfaz
     this.iTitulo = this.base.getElementsByTagName('input')[0]
-    this.iFecha = this.base.getElementsByTagName('input')[1]
+    this.iFechaInicio = this.base.getElementsByTagName('input')[1]
+    this.iFechaFin = this.base.getElementsByTagName('input')[2]
     this.taDescripcion =  this.base.getElementsByTagName('textarea')[0]
     this.divActividades =  this.base.querySelectorAll('div')[0] //Primer div dentro de divTarea
     this.sCalificacion = this.base.getElementsByTagName('select')[0]
@@ -50,7 +51,8 @@ export class VistaTarea extends Vista{
   setTarea (tarea) {
     this.tarea = tarea
     this.iTitulo.value = tarea.titulo
-    this.iFecha.value = tarea.fecha
+    this.iFechaInicio.value = tarea.fecha
+    this.iFechaFin.value = tarea.fecha
     this.taDescripcion.value = tarea.descripcion
     this.taComentarioCalificacionEmpresa.value = tarea.comentario_calificacion_empresa
     // Seleccionamos la calificación de la empresa
@@ -127,7 +129,7 @@ export class VistaTarea extends Vista{
   **/
   deshabilitar (deshabilitar) {
     this.iTitulo.disabled = deshabilitar
-    this.iFecha.disabled = deshabilitar
+    this.iFechaInicio.disabled = deshabilitar
     this.taDescripcion.disabled = deshabilitar
     this.taComentarioCalificacionEmpresa.disabled = deshabilitar
     this.sCalificacion.disabled = deshabilitar
@@ -163,7 +165,7 @@ export class VistaTarea extends Vista{
         this.cargarActividades(this.controlador.getUsuario().idCurso)
         this.tarea = null
         const hoy = new Date()
-        this.iFecha.value = hoy.toLocaleDateString('en-CA')
+        this.iFechaInicio.value = hoy.toLocaleDateString('en-CA')
         this.cargarCalificaciones()
       }
     }
@@ -175,7 +177,8 @@ export class VistaTarea extends Vista{
   **/
   limpiar () {
     this.iTitulo.value = ''
-    this.iFecha.value = ''
+    this.iFechaInicio.value = ''
+    this.iFechaFin.value = ''
     this.taDescripcion.value = ''
     this.sCalificacion.selectedIndex = 0
     this.taComentarioCalificacionEmpresa.value = ''
@@ -239,13 +242,14 @@ export class VistaTarea extends Vista{
     try {
       // Validación de datos.
       if (this.iTitulo.value.length < 5) { throw Error('Debes especificar un título para la tarea que sea descriptivo.') }
-      if (this.iFecha.value === '') { throw Error('Debes especificar una fecha válida para la tarea.') }
-      if (new Date(this.iFecha.value) > new Date()) { throw Error('No registres tareas que no hayas hecho todavía.') }
+      if (this.iFechaInicio.value === '') { throw Error('Debes especificar una fecha válida para la tarea.') }
+      if (new Date(this.iFechaFin.value) < new Date(this.iFechaInicio.value)) { throw Error('La fecha de fin no puede ser anterior a la de inicio.') }
+      if (new Date(this.iFechaInicio.value) > new Date()) { throw Error('No registres tareas que no hayas hecho todavía.') }
       if (this.taDescripcion.length < 10) { throw Error('Debes describir detalladamente la tarea.') }
 
       const tarea = {}
       tarea.titulo = this.iTitulo.value
-      tarea.fecha = this.iFecha.value
+      tarea.fecha = this.iFechaInicio.value
       tarea.descripcion = this.taDescripcion.value
       tarea.actividades = []
       for (const iActividad of document.querySelectorAll('input[data-idActividad]')) {
