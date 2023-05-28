@@ -242,7 +242,9 @@ class DualEx {
     this.modelo.modificarTarea(tarea)
       .then(resultado => {
         this.vistaMensaje.mostrar('La tarea se modificó correctamente', VistaMensaje.OK)
-        if (this.#usuario.rol === 'profesor') { this.mostrarTareasAlumno(this.alumnoMostrado) } else { this.mostrarTareasAlumno(this.#usuario) }
+        if (this.#usuario.rol === 'profesor') {
+           this.mostrarTareasAlumno(this.alumnoMostrado) } 
+           else { this.mostrarTareasAlumno(this.#usuario) }
       })
       .catch(error => this.gestionarError(error))
   }

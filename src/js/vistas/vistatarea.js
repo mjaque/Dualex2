@@ -36,6 +36,7 @@ export class VistaTarea extends Vista{
     this.btnCancelar.onclick = this.cancelar.bind(this)
     this.btnSiguiente.addEventListener('click', this.aceptarYSiguiente.bind(this))
     this.btnAnterior.addEventListener('click', this.anterior.bind(this))
+    this.iFechaInicio.addEventListener('change',this.cambioFecha.bind(this))
     
 
     // Referencia a la tarea que se está mostrando
@@ -52,7 +53,7 @@ export class VistaTarea extends Vista{
     this.tarea = tarea
     this.iTitulo.value = tarea.titulo
     this.iFechaInicio.value = tarea.fecha
-    this.iFechaFin.value = tarea.fecha
+    this.iFechaFin.value = tarea.fecha_fin
     this.taDescripcion.value = tarea.descripcion
     this.taComentarioCalificacionEmpresa.value = tarea.comentario_calificacion_empresa
     // Seleccionamos la calificación de la empresa
@@ -130,6 +131,7 @@ export class VistaTarea extends Vista{
   deshabilitar (deshabilitar) {
     this.iTitulo.disabled = deshabilitar
     this.iFechaInicio.disabled = deshabilitar
+    this.iFechaFin.disabled = deshabilitar
     this.taDescripcion.disabled = deshabilitar
     this.taComentarioCalificacionEmpresa.disabled = deshabilitar
     this.sCalificacion.disabled = deshabilitar
@@ -250,6 +252,7 @@ export class VistaTarea extends Vista{
       const tarea = {}
       tarea.titulo = this.iTitulo.value
       tarea.fecha = this.iFechaInicio.value
+      tarea.fecha_fin = this.iFechaFin.value
       tarea.descripcion = this.taDescripcion.value
       tarea.actividades = []
       for (const iActividad of document.querySelectorAll('input[data-idActividad]')) {
@@ -322,5 +325,12 @@ export class VistaTarea extends Vista{
       this.setTarea(this.works[this.x])
       window.scroll(0,0)
       
+    }
+
+    /*
+    Cambia la fecha fin si se cambia la fecha de inicio
+    */
+    cambioFecha(){
+      this.iFechaFin.value = this.iFechaInicio.value
     }
 }
