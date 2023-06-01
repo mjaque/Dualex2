@@ -35,18 +35,20 @@ export class VistaInforme extends Vista {
     @param alumno {Alumno} Datos del alumno.
     @param informe {Informe} Datos del informe.
   **/
-  cargar (alumno, informe) {
+  async cargar (alumno, informe) {
     this.borrar()
+    this.alumno=alumno
+    this.informe = informe
+    console.log(informe)
     this.sAlumno.textContent = `${alumno.nombre} ${alumno.apellidos}`
     this.sCoordinador.textContent = informe.coordinador
     this.sGrado.textContent = informe.grado
     this.sCiclo.textContent = alumno.titulo
     this.sPeriodo.textContent = informe.periodo
-
+    this.actividades = await this.ponerNotas()
     this._crearGrid(informe.valoracion, this.divValoracion)
     this._anadirModulos(informe.modulos, this.divValoracion)
     this._crearGrid(informe.evaluacion, this.divEvaluacion)
-    this.ponerNotas()
   }
 
   /**
@@ -79,6 +81,7 @@ export class VistaInforme extends Vista {
   _crearGrid (informe, div) {
     // Mejor si primero lo borramos
     while (div.children.length > 0) { div.lastChild.remove() }
+    let i=0
     for (const dato of informe) {
       const div1 = document.createElement('div')
       div.appendChild(div1)
@@ -99,8 +102,8 @@ export class VistaInforme extends Vista {
       // Ponemos la calificación
       const div2 = document.createElement('div')
       div.appendChild(div2)
-      div2.textContent = dato.calificacion
-      
+      div2.textContent = this.actividades[i].nota_final.substring(0, this.actividades[i].nota_final.length - 2)
+      i++
     }
   }
 
@@ -118,8 +121,10 @@ export class VistaInforme extends Vista {
   }
 
   async ponerNotas(){
-    this.tareas = await this.controlador.traerTareas()
-    console.log(this.tareas)
-    console.log(this.sPeriodo.textContent)
+    var periodo = this.informe.periodo.split(' ')
+    console.log(periodo[1])
+    this.actividades = await this.controlador.traerActividadNotas(this.alumno.id,periodo[1])
+    console.log(this.actividades)
+    return this.actividades
   }
 }

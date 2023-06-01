@@ -20,4 +20,18 @@ class DAOActividad{
 
 		return BD::seleccionar($sql, $params);
 	}
+	public static function getActividadNotas($id_alumno,$periodo){
+		$sql  = 'SELECT Actividad.id AS id_actividad, Actividad.titulo, AVG(Calificacion.valor) AS "nota_final" FROM Actividad 
+		LEFT JOIN Actividad_Tarea ON Actividad.id = Actividad_Tarea.id_actividad 
+		LEFT JOIN Tarea ON Actividad_Tarea.id_tarea = Tarea.id 
+		LEFT JOIN Calificacion ON Calificacion.id = Tarea.id_calificacion_empresa 
+		LEFT JOIN Actividad_Curso ON Actividad_Curso.id_actividad = Actividad.id 
+		LEFT JOIN Curso ON Curso.id=Actividad_Curso.id_curso 
+		LEFT JOIN Alumno ON Alumno.id_curso = Curso.id 
+		WHERE Alumno.id=:id_alumno AND Tarea.fecha BETWEEN (SELECT fecha_inicio FROM Periodo WHERE id = :periodo) AND (SELECT fecha_fin FROM Periodo WHERE id = :periodo) 
+		GROUP BY Actividad.id ';
+
+		$params = array('id_alumno' => $id_alumno,'periodo'=>$periodo);
+		return BD::seleccionar($sql, $params);
+	}
 }

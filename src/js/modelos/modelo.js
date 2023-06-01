@@ -114,4 +114,11 @@ export class Modelo {
     getCursos () {
       return Rest.get('curso')
     }
+
+    getActividadNotas (id,periodo) {
+      const queryParams = new Map()
+      queryParams.set('id_alumno', id)
+      queryParams.set('periodo', periodo)
+      return Rest.get('actividad', ['actividadNota'], queryParams)
+    }
 }

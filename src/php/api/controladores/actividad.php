@@ -13,12 +13,23 @@ class Actividad{
 		@return {Array[Array[String]]}
 	**/
 	function get($pathParams, $queryParams, $usuario){
-		$idCurso = $pathParams[0];
-		$resultado = DAOActividad::ver($idCurso);
-		$json = json_encode($resultado);
-		header('Content-type: application/json; charset=utf-8');
-		header('HTTP/1.1 200 OK');
-		echo $json;
-		die();
+		if($pathParams[0]=='actividadNota' && array_key_exists('id_alumno', $queryParams)){
+			$resultado = DAOActividad::getActividadNotas($queryParams['id_alumno'],$queryParams['periodo']);
+			$json = json_encode($resultado);
+			header('Content-type: application/json; charset=utf-8');
+			header('HTTP/1.1 200 OK');
+			echo $json;
+			die();
+		}
+		else{
+			$idCurso = $pathParams[0];
+			$resultado = DAOActividad::ver($idCurso);
+			$json = json_encode($resultado);
+			header('Content-type: application/json; charset=utf-8');
+			header('HTTP/1.1 200 OK');
+			echo $json;
+			die();
+		}
+		
 	}
 }
