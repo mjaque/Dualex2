@@ -320,9 +320,57 @@ export class VistaTarea extends Vista{
         }
       }
       this.x++
+
+      try {
+        // Validación de datos.
+        if (this.iTitulo.value.length < 5) { throw Error('Debes especificar un título para la tarea que sea descriptivo.') }
+        if (this.iFechaInicio.value === '') { throw Error('Debes especificar una fecha válida para la tarea.') }
+        if (new Date(this.iFechaFin.value) < new Date(this.iFechaInicio.value)) { throw Error('La fecha de fin no puede ser anterior a la de inicio.') }
+        if (new Date(this.iFechaInicio.value) > new Date()) { throw Error('No registres tareas que no hayas hecho todavía.') }
+        if (this.taDescripcion.length < 10) { throw Error('Debes describir detalladamente la tarea.') }
+  
+        const tarea = {}
+        tarea.titulo = this.iTitulo.value
+        tarea.fecha = this.iFechaInicio.value
+        tarea.fecha_fin = this.iFechaFin.value
+        tarea.descripcion = this.taDescripcion.value
+        tarea.actividades = []
+        for (const iActividad of document.querySelectorAll('input[data-idActividad]')) {
+          if (iActividad.checked) { tarea.actividades.push(iActividad.getAttribute('data-idActividad')) }
+        }
+        tarea.idCalificacionEmpresa = this.sCalificacion.value
+        tarea.comentarioCalificacionEmpresa = this.taComentarioCalificacionEmpresa.value
+        tarea.evaluaciones = []
+        if (this.controlador.getUsuario().rol === 'profesor') {
+          for (const divEvaluacion of this.divEvaluaciones.getElementsByTagName('div')) {
+            if(divEvaluacion.getElementsByTagName('input')[0].checked == true){
+              divEvaluacion.getElementsByTagName('input')[0].value = 1
+            }
+            else{
+              divEvaluacion.getElementsByTagName('input')[0].value = 0
+            }
+            const calificacion = divEvaluacion.getElementsByTagName('input')[0].value
+            const comentario = divEvaluacion.getElementsByTagName('textarea')[0].value
+            const evaluacion = {
+              id: divEvaluacion.modulo.id,
+              calificacion,
+              comentario
+            }
+            tarea.evaluaciones.push(evaluacion)
+          }
+        }
+        if (this.tarea) {
+          tarea.id = this.tarea.id
+          let siguiente = 1
+          this.controlador.modificarTarea(tarea,siguiente)
+          this.setTarea(this.works[this.x])
+          window.scroll(0,0)
+        } else { this.controlador.crearTarea(tarea) }
+      } catch (e) {
+        this.controlador.gestionarError(e)
+      }
       
-      this.setTarea(this.works[this.x])
-      window.scroll(0,0)
+      
     }
 
     /**

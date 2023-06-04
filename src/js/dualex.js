@@ -238,13 +238,18 @@ class DualEx {
     Modifica una tarea y vuelve a la vista de tareas del alumno.
     @param tarea {Tarea} Datos de la tarea.
   **/
-  modificarTarea (tarea) {
+  modificarTarea (tarea,siguente) {
     this.modelo.modificarTarea(tarea)
       .then(resultado => {
-        this.vistaMensaje.mostrar('La tarea se modificó correctamente', VistaMensaje.OK)
-        if (this.#usuario.rol === 'profesor') {
-           this.mostrarTareasAlumno(this.alumnoMostrado) } 
-           else { this.mostrarTareasAlumno(this.#usuario) }
+        if(siguente!=1){
+          this.vistaMensaje.mostrar('La tarea se modificó correctamente', VistaMensaje.OK)
+          if (this.#usuario.rol === 'profesor') {
+            this.mostrarTareasAlumno(this.alumnoMostrado) 
+          } 
+          else {
+            this.mostrarTareasAlumno(this.#usuario) 
+          }
+        }
       })
       .catch(error => this.gestionarError(error))
   }
