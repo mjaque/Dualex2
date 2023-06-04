@@ -14,17 +14,17 @@ export class VistaMensaje extends Vista{
     @param {Object} controlador Controlador de la vista principal.
     @param {Node} base Nodo al que se añadirá la vista principal.
   **/
-  constructor (controlador, base) {
-	super(controlador)
-    this.base = base
+    constructor (controlador, base) {
+      super(controlador)
+      this.base = base
+    
+      // Cogemos referencias a los elementos del interfaz
+      this.btnCerrar = this.base.getElementsByTagName('span')[0]
+      this.spanMensaje = this.base.getElementsByTagName('span')[1]
   
-    // Cogemos referencias a los elementos del interfaz
-    this.btnCerrar = document.getElementsByTagName('span')[0]
-    this.spanMensaje = document.getElementsByTagName('span')[1]
-
-    // Asociamos eventos
-    this.btnCerrar.onclick = this.cerrar.bind(this)
-  }
+      // Asociamos eventos
+      this.btnCerrar.onclick = this.cerrar.bind(this)
+    }
 
   /**
     Cierra el mensaje.
