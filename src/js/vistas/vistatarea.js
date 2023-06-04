@@ -299,6 +299,7 @@ export class VistaTarea extends Vista{
       } else { this.controlador.crearTarea(tarea) }
     } catch (e) {
       this.controlador.gestionarError(e)
+      window.scroll(0,0)
     }
   }
 
@@ -368,6 +369,7 @@ export class VistaTarea extends Vista{
         } else { this.controlador.crearTarea(tarea) }
       } catch (e) {
         this.controlador.gestionarError(e)
+        window.scroll(0,0)
       }
       
       
