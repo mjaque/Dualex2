@@ -20,6 +20,7 @@ export class VistaTarea extends Vista{
     this.iTitulo = this.base.getElementsByTagName('input')[0]
     this.iFechaInicio = this.base.getElementsByTagName('input')[1]
     this.iFechaFin = this.base.getElementsByTagName('input')[2]
+    this.iImagenes = this.base.getElementsByTagName('input')[3]
     this.taDescripcion =  this.base.getElementsByTagName('textarea')[0]
     this.divActividades =  this.base.querySelectorAll('div')[0] //Primer div dentro de divTarea
     this.sCalificacion = this.base.getElementsByTagName('select')[0]
@@ -37,6 +38,9 @@ export class VistaTarea extends Vista{
     this.btnSiguiente.addEventListener('click', this.aceptarYSiguiente.bind(this))
     this.btnAnterior.addEventListener('click', this.anterior.bind(this))
     this.iFechaInicio.addEventListener('change',this.cambioFecha.bind(this))
+    this.imagenes = []
+    this.numImagenes = 0
+    this.iImagenes.addEventListener('change',this.anadirImagen.bind(this))
     
 
     // Referencia a la tarea que se está mostrando
@@ -88,9 +92,12 @@ export class VistaTarea extends Vista{
         div.appendChild(iCalificacion)
         iCalificacion.value = modulo.calificacion
         iCalificacion.setAttribute('type', 'checkbox')
-        iCalificacion.setAttribute('value', 0)
-        if(iCalificacion.checked){
-          iCalificacion.setAttribute('value',1)
+        console.log(iCalificacion.value)
+        if(iCalificacion.value== 1){
+          iCalificacion.checked = true
+        }
+        else{
+          iCalificacion.checked = false
         }
         this.sCalificacion.value = iCalificacion.value
         const revisado = document.createElement('label')
@@ -267,6 +274,12 @@ export class VistaTarea extends Vista{
       tarea.evaluaciones = []
       if (this.controlador.getUsuario().rol === 'profesor') {
         for (const divEvaluacion of this.divEvaluaciones.getElementsByTagName('div')) {
+          if(divEvaluacion.getElementsByTagName('input')[0].checked == true){
+            divEvaluacion.getElementsByTagName('input')[0].value = 1
+          }
+          else{
+            divEvaluacion.getElementsByTagName('input')[0].value = 0
+          }
           const calificacion = divEvaluacion.getElementsByTagName('input')[0].value
           const comentario = divEvaluacion.getElementsByTagName('textarea')[0].value
           const evaluacion = {
@@ -306,10 +319,50 @@ export class VistaTarea extends Vista{
         }
       }
       this.x++
-      /*console.log(this.x)
-      console.log(this.works[this.x])*/
-      this.setTarea(this.works[this.x])
-      window.scroll(0,0)
+      
+      try {
+        // Validación de datos.
+        if (this.iTitulo.value.length < 5) { throw Error('Debes especificar un título para la tarea que sea descriptivo.') }
+        if (this.iFechaInicio.value === '') { throw Error('Debes especificar una fecha válida para la tarea.') }
+        if (new Date(this.iFechaFin.value) < new Date(this.iFechaInicio.value)) { throw Error('La fecha de fin no puede ser anterior a la de inicio.') }
+        if (new Date(this.iFechaInicio.value) > new Date()) { throw Error('No registres tareas que no hayas hecho todavía.') }
+        if (this.taDescripcion.length < 10) { throw Error('Debes describir detalladamente la tarea.') }
+  
+        const tarea = {}
+        tarea.titulo = this.iTitulo.value
+        tarea.fecha = this.iFechaInicio.value
+        tarea.fecha_fin = this.iFechaFin.value
+        tarea.descripcion = this.taDescripcion.value
+        tarea.actividades = []
+        for (const iActividad of document.querySelectorAll('input[data-idActividad]')) {
+          if (iActividad.checked) { tarea.actividades.push(iActividad.getAttribute('data-idActividad')) }
+        }
+        tarea.idCalificacionEmpresa = this.sCalificacion.value
+        tarea.comentarioCalificacionEmpresa = this.taComentarioCalificacionEmpresa.value
+        tarea.evaluaciones = []
+        if (this.controlador.getUsuario().rol === 'profesor') {
+          for (const divEvaluacion of this.divEvaluaciones.getElementsByTagName('div')) {
+            const calificacion = divEvaluacion.getElementsByTagName('input')[0].value
+            const comentario = divEvaluacion.getElementsByTagName('textarea')[0].value
+            const evaluacion = {
+              id: divEvaluacion.modulo.id,
+              calificacion,
+              comentario
+            }
+            tarea.evaluaciones.push(evaluacion)
+          }
+        }
+  
+        if (this.tarea) {
+          tarea.id = this.tarea.id
+          this.controlador.modificarTarea(tarea)
+
+          this.setTarea(this.works[this.x])
+          window.scroll(0,0)
+        }
+      } catch (e) {
+        this.controlador.gestionarError(e)
+      }
     }
 
     /**
@@ -336,5 +389,29 @@ export class VistaTarea extends Vista{
     */
     cambioFecha(){
       this.iFechaFin.value = this.iFechaInicio.value
+    }
+
+    async anadirImagen(){
+      if(this.numImagenes<3){
+        let valorimagen = null
+        console.log(this.iImagenes.files[0])
+        const archivo = this.iImagenes.files[0]
+        const lector = new FileReader()
+        lector.addEventListener('load',() => {
+          console.log(lector.result)
+          valorimagen = lector.result
+          this.imagenes[this.numImagenes]= valorimagen
+          console.log(this.imagenes[this.numImagenes])
+          this.numImagenes++
+          this.iImagenes.value = ''
+          if(this.numImagenes==3){
+            this.iImagenes.disabled = true
+          }
+        })
+        lector.readAsDataURL(archivo)
+        
+      }else{
+        this.iImagenes.disabled = true
+      }
     }
 }

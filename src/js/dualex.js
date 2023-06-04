@@ -304,6 +304,10 @@ class DualEx {
   traerActividadNotas(id,periodo){
     return this.modelo.getActividadNotas(id,periodo)
   }
+
+  traerTareas(){
+    return this.modelo.getTareasAlumno(this.alumno)
+  }
   
 }
 
