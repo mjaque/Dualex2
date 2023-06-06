@@ -365,6 +365,7 @@ export class VistaTarea extends Vista{
           let siguiente = 1
           this.controlador.modificarTarea(tarea,siguiente)
           this.setTarea(this.works[this.x])
+          this.controlador.cargarNombreTarea(this.works[this.x])
           window.scroll(0,0)
         } else { this.controlador.crearTarea(tarea) }
       } catch (e) {

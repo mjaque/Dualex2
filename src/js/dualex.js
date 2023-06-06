@@ -313,6 +313,11 @@ class DualEx {
   traerTareas(){
     return this.modelo.getTareasAlumno(this.alumno)
   }
+
+  cargarNombreTarea(tarea){
+    console.log(tarea.titulo)
+    this.vistaMenu.verTarea(tarea)
+  }
   
 }
 
