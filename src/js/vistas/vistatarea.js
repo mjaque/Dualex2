@@ -31,6 +31,9 @@ export class VistaTarea extends Vista{
     this.btnAceptar =  this.base.getElementsByTagName('button')[1]
     this.btnAnterior =  this.base.getElementsByTagName('button')[2]
     this.btnSiguiente =  this.base.getElementsByTagName('button')[3]
+    this.imgImagen1 = this.base.getElementsByTagName('img')[0]
+    this.imgImagen2 = this.base.getElementsByTagName('img')[1]
+    this.imgImagen3 = this.base.getElementsByTagName('img')[2]
 
     // Asociamos eventos
     this.btnAceptar.onclick = this.aceptar.bind(this)
@@ -38,10 +41,9 @@ export class VistaTarea extends Vista{
     this.btnSiguiente.addEventListener('click', this.aceptarYSiguiente.bind(this))
     this.btnAnterior.addEventListener('click', this.anterior.bind(this))
     this.iFechaInicio.addEventListener('change',this.cambioFecha.bind(this))
-    this.imagenes = []
-    this.numImagenes = 0
-    this.iImagenes.addEventListener('change',this.anadirImagen.bind(this))
     
+    this.imagenes = []
+    this.iImagenes.addEventListener('change',this.anadirImagen.bind(this))
 
     // Referencia a la tarea que se está mostrando
     this.tarea = null
@@ -55,11 +57,64 @@ export class VistaTarea extends Vista{
   **/
   setTarea (tarea) {
     this.tarea = tarea
+    console.log(tarea.imagenes)
+    if(tarea.imagenes){
+      var separador = ' '
+      var cadena = tarea.imagenes.split(separador)
+      if(cadena[0]){
+        var separador = ' '
+        var cadena = tarea.imagenes.split(separador)
+        this.imgImagen1.src = cadena[0]
+      }
+      if(cadena[1]){
+        var separador = ' '
+        var cadena = tarea.imagenes.split(separador)
+        this.imgImagen1.src = cadena[0]
+        this.imgImagen2.src = cadena[1]
+      }
+      if(cadena[2]){
+        var separador = ' '
+        var cadena = tarea.imagenes.split(separador)
+        this.imgImagen1.src = cadena[0]
+        this.imgImagen2.src = cadena[1]
+        this.imgImagen3.src = cadena[2]
+      }
+    }
+    
+    
+
+    if(this.imgImagen1.src == ''){
+      console.log('imagen1 vacia')
+      this.numImagenes = 0
+    }
+    else{
+      if(this.imgImagen2.src == ''){
+        console.log('imagen2 vacia')
+        this.numImagenes = 1
+      }
+      else{
+        if(this.imgImagen3.src == ''){
+          console.log('imagen3 vacia')
+          this.numImagenes = 2
+        }
+        else{
+          console.log('3 imagenes')
+          this.numImagenes = 3
+        }
+      }
+    }
+    
     this.iTitulo.value = tarea.titulo
     this.iFechaInicio.value = tarea.fecha
     this.iFechaFin.value = tarea.fecha_fin
     this.taDescripcion.value = tarea.descripcion
     this.taComentarioCalificacionEmpresa.value = tarea.comentario_calificacion_empresa
+    if(tarea.imagenes){
+      var separador = ' '
+      var cadena = tarea.imagenes.split(separador)
+      console.log(cadena)
+    }
+    
     // Seleccionamos la calificación de la empresa
     this.cargarCalificaciones()
       .then(respuesta => {
@@ -197,6 +252,10 @@ export class VistaTarea extends Vista{
     this.taDescripcion.value = ''
     this.sCalificacion.selectedIndex = 0
     this.taComentarioCalificacionEmpresa.value = ''
+    this.imgImagen1.src = ''
+    this.imgImagen2.src = ''
+    this.imgImagen3.src = ''
+    this.iImagenes.value= ''
     while (this.divEvaluaciones.firstChild) { this.divEvaluaciones.firstChild.remove() }
   }
 
@@ -268,6 +327,10 @@ export class VistaTarea extends Vista{
       tarea.fecha_fin = this.iFechaFin.value
       tarea.descripcion = this.taDescripcion.value
       tarea.actividades = []
+      this.imagenes[0]=this.imgImagen1.src
+      this.imagenes[1]=this.imgImagen2.src
+      this.imagenes[2]=this.imgImagen3.src
+      tarea.imagenes = this.imagenes
       for (const iActividad of document.querySelectorAll('input[data-idActividad]')) {
         if (iActividad.checked) { tarea.actividades.push(iActividad.getAttribute('data-idActividad')) }
       }
@@ -336,6 +399,10 @@ export class VistaTarea extends Vista{
         tarea.fecha_fin = this.iFechaFin.value
         tarea.descripcion = this.taDescripcion.value
         tarea.actividades = []
+        this.imagenes[0]=this.imgImagen1.src
+        this.imagenes[1]=this.imgImagen2.src
+        this.imagenes[2]=this.imgImagen3.src
+        tarea.imagenes = this.imagenes
         for (const iActividad of document.querySelectorAll('input[data-idActividad]')) {
           if (iActividad.checked) { tarea.actividades.push(iActividad.getAttribute('data-idActividad')) }
         }
@@ -364,6 +431,7 @@ export class VistaTarea extends Vista{
           tarea.id = this.tarea.id
           let siguiente = 1
           this.controlador.modificarTarea(tarea,siguiente)
+          this.limpiar()
           this.setTarea(this.works[this.x])
           this.controlador.cargarNombreTarea(this.works[this.x])
           window.scroll(0,0)
@@ -389,7 +457,9 @@ export class VistaTarea extends Vista{
       this.x--
       /*console.log(this.x)
       console.log(this.works[this.x])*/
+      this.limpiar()
       this.setTarea(this.works[this.x])
+      this.controlador.cargarNombreTarea(this.works[this.x])
       window.scroll(0,0)
       
     }
@@ -412,6 +482,8 @@ export class VistaTarea extends Vista{
           valorimagen = lector.result
           this.imagenes[this.numImagenes]= valorimagen
           console.log(this.imagenes[this.numImagenes])
+          var imgImagen = this.base.getElementsByTagName('img')[this.numImagenes]
+          imgImagen.src = this.imagenes[this.numImagenes]
           this.numImagenes++
           this.iImagenes.value = ''
           if(this.numImagenes==3){
