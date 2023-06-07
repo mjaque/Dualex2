@@ -75,15 +75,15 @@ export class VistaTarea extends Vista{
         var separador = ' '
         var cadena = tarea.imagenes.split(separador)
         this.imgImagen1.src = cadena[0]
-        this.imgImagen2.src = 'vacia'
-        this.imgImagen3.src = 'vacia'
+        this.imgImagen2.src = ' '
+        this.imgImagen3.src = ' '
       }
       if(cadena[1]){
         var separador = ' '
         var cadena = tarea.imagenes.split(separador)
         this.imgImagen1.src = cadena[0]
         this.imgImagen2.src = cadena[1]
-        this.imgImagen3.src = 'vacia'
+        this.imgImagen3.src = ' '
       }
       if(cadena[2]){
         var separador = ' '
@@ -94,24 +94,24 @@ export class VistaTarea extends Vista{
       }
     }
     else{
-      this.imgImagen1.src = 'vacia'
-      this.imgImagen2.src = 'vacia'
-      this.imgImagen3.src = 'vacia'
+      this.imgImagen1.src = ' '
+      this.imgImagen2.src = ' '
+      this.imgImagen3.src = ' '
     }
     
     
 
-    if(this.imgImagen1.src == ' ' || this.imgImagen1.src==null || this.imgImagen1.src == '' || this.imgImagen1.src == 'http://localhost/dualex_fin/Dualex/src/'){
+    if(this.imgImagen1.src == ' ' || this.imgImagen1.src==null || this.imgImagen1.src == '' || this.imgImagen1.src == 'vacia' || this.imgImagen1.src == 'http://localhost/dualex_fin/Dualex/src/' || this.imgImagen1.src == 'http://localhost/dualex_fin/Dualex/src/vacia'){
       console.log('imagen1 vacia')
       this.numImagenes = 0
     }
     else{
-      if(this.imgImagen2.src == ' ' || this.imgImagen2.src==null || this.imgImagen2.src == '' || this.imgImagen2.src == 'http://localhost/dualex_fin/Dualex/src/'){
+      if(this.imgImagen2.src == ' ' || this.imgImagen2.src==null || this.imgImagen2.src == '' || this.imgImagen2.src == 'vacia' || this.imgImagen2.src == 'http://localhost/dualex_fin/Dualex/src/' || this.imgImagen1.src == 'http://localhost/dualex_fin/Dualex/src/vacia'){
         console.log('imagen2 vacia')
         this.numImagenes = 1
       }
       else{
-        if(this.imgImagen3.src == ' ' || this.imgImagen3.src==null || this.imgImagen3.src == '' || this.imgImagen3.src == 'http://localhost/dualex_fin/Dualex/src/'){
+        if(this.imgImagen3.src == ' ' || this.imgImagen3.src==null || this.imgImagen3.src == '' || this.imgImagen3.src == 'vacia' || this.imgImagen3.src == 'http://localhost/dualex_fin/Dualex/src/' || this.imgImagen1.src == 'http://localhost/dualex_fin/Dualex/src/vacia'){
           console.log('imagen3 vacia')
           this.numImagenes = 2
         }

@@ -93,6 +93,10 @@
 				require_once('./controladores/actividad.php');
 				$controlador = new Actividad();
 				break;
+			case 'modulo':
+				require_once('./controladores/modulo.php');
+				$controlador = new Modulo();
+				break;
 			case 'calificacion':
 			case 'curso':
 			case 'periodo':

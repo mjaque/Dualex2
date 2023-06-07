@@ -46,6 +46,7 @@ export class VistaInforme extends Vista {
     this.sCiclo.textContent = alumno.titulo
     this.sPeriodo.textContent = informe.periodo
     this.actividades = await this.ponerNotas()
+    this.modulos = await this.ponerNotasModulos()
     this._crearGrid(informe.valoracion, this.divValoracion)
     this._anadirModulos(informe.modulos, this.divValoracion)
     this._crearGrid(informe.evaluacion, this.divEvaluacion)
@@ -79,31 +80,61 @@ export class VistaInforme extends Vista {
   }
 
   _crearGrid (informe, div) {
+    console.log(informe)
+    console.log(div)
     // Mejor si primero lo borramos
     while (div.children.length > 0) { div.lastChild.remove() }
     let i=0
-    for (const dato of informe) {
-      const div1 = document.createElement('div')
-      div.appendChild(div1)
-      div1.setAttribute('id', 'divInformeActividad_' + dato.orden)
-      div1.appendChild(document.createTextNode(dato.titulo))
-      /* if (dato.modulos)
-        //Ponemos los módulos de la actividad
-        for(let modulo of dato.modulos){
-          let span = document.createElement('span')
-          div1.appendChild(span)
-          span.classList.add('modulo')
-          span.textContent = modulo.codigo
-          span.setAttribute('title', modulo.titulo)
-          span.style.backgroundColor = modulo.color_fondo
-          span.style.color = modulo.color_letra
-        }
-      */
-      // Ponemos la calificación
-      const div2 = document.createElement('div')
-      div.appendChild(div2)
-      div2.textContent = this.actividades[i].nota_final.substring(0, this.actividades[i].nota_final.length - 2)
-      i++
+    console.log(div.classList.value)
+    if(div.classList[0]=='grid1'){
+      for (const dato of informe) {
+        const div1 = document.createElement('div')
+        div.appendChild(div1)
+        div1.setAttribute('id', 'divInformeActividad_' + dato.orden)
+        div1.appendChild(document.createTextNode(dato.titulo))
+        /* if (dato.modulos)
+          //Ponemos los módulos de la actividad
+          for(let modulo of dato.modulos){
+            let span = document.createElement('span')
+            div1.appendChild(span)
+            span.classList.add('modulo')
+            span.textContent = modulo.codigo
+            span.setAttribute('title', modulo.titulo)
+            span.style.backgroundColor = modulo.color_fondo
+            span.style.color = modulo.color_letra
+          }
+        */
+        // Ponemos la calificación
+        const div2 = document.createElement('div')
+        div.appendChild(div2)
+        div2.textContent = this.actividades[i].nota_final.substring(0, this.actividades[i].nota_final.length - 2)
+        i++
+      }
+    }
+    if(div.classList[0]=='grid3'){
+      for (const dato of informe) {
+        const div1 = document.createElement('div')
+        div.appendChild(div1)
+        div1.setAttribute('id', 'divInformeActividad_' + dato.orden)
+        div1.appendChild(document.createTextNode(dato.titulo))
+        /* if (dato.modulos)
+          //Ponemos los módulos de la actividad
+          for(let modulo of dato.modulos){
+            let span = document.createElement('span')
+            div1.appendChild(span)
+            span.classList.add('modulo')
+            span.textContent = modulo.codigo
+            span.setAttribute('title', modulo.titulo)
+            span.style.backgroundColor = modulo.color_fondo
+            span.style.color = modulo.color_letra
+          }
+        */
+        // Ponemos la calificación
+        const div2 = document.createElement('div')
+        div.appendChild(div2)
+        div2.textContent = this.modulos[i].nota_final.substring(0, this.modulos[i].nota_final.length - 2)
+        i++
+      }
     }
   }
 
@@ -120,11 +151,27 @@ export class VistaInforme extends Vista {
     }
   }
 
+  /**
+   * Devuelve las notas de las actividades del alumno.
+   * @returns array
+   */
   async ponerNotas(){
     var periodo = this.informe.periodo.split(' ')
     console.log(periodo[1])
     this.actividades = await this.controlador.traerActividadNotas(this.alumno.id,periodo[1])
     console.log(this.actividades)
     return this.actividades
+  }
+
+  /**
+   * Devuelve las notas de los módulos del alumno.
+   * @returns array
+   */
+  async ponerNotasModulos(){
+    var periodo = this.informe.periodo.split(' ')
+    console.log(periodo[1])
+    this.modulos = await this.controlador.traerModulosNotas(this.alumno.id,periodo[1])
+    console.log(this.modulos)
+    return this.modulos
   }
 }

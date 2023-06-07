@@ -20,6 +20,10 @@ class DAOActividad{
 
 		return BD::seleccionar($sql, $params);
 	}
+	/**
+	 * Devuelve las actividades con su nota
+	 * @return array con id de la actividad, su nombre y su nota final
+	 */
 	public static function getActividadNotas($id_alumno,$periodo){
 		$sql  = 'SELECT Actividad.id AS id_actividad, Actividad.titulo, AVG(Calificacion.valor) AS "nota_final" FROM Actividad 
 		LEFT JOIN Actividad_Tarea ON Actividad.id = Actividad_Tarea.id_actividad 
