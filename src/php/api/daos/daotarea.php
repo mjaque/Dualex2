@@ -11,7 +11,7 @@ class DAOTarea{
 		@return Un array de arrays con los datos de cada tarea.
 	**/
 	public static function verTareasDeAlumno($idAlumno){
-		$sql  = 'SELECT Tarea.id AS id, Tarea.titulo AS titulo, Tarea.descripcion AS descripcion, Tarea.fecha, Tarea.fecha_fin ';
+		$sql  = 'SELECT Tarea.id AS id, Tarea.titulo AS titulo, Tarea.descripcion AS descripcion, Tarea.fecha, Tarea.fecha_fin,Tarea.imagenes ';
 		$sql .= ', Tarea.id_calificacion_empresa, Tarea.comentario_calificacion_empresa ';
 		$sql .= ', Calificacion.titulo AS calificacion_empresa ';
 		$sql .= ', Actividad.id AS id_actividad, Actividad.titulo AS actividad_titulo, Actividad.descripcion AS actividad_descripcion';
@@ -40,7 +40,7 @@ class DAOTarea{
 		@return Un array de arrays con los datos de cada tarea.
 	**/
 	public static function verTareaDeAlumno($idTarea, $idAlumno){
-		$sql	= 'SELECT Tarea.id AS id, Tarea.titulo AS titulo, Tarea.descripcion AS descripcion, Tarea.fecha,Tarea.fecha_fin ';
+		$sql	= 'SELECT Tarea.id AS id, Tarea.titulo AS titulo, Tarea.descripcion AS descripcion, Tarea.fecha,Tarea.fecha_fin,Tarea.imagenes ';
 		$sql .= ', Tarea.id_calificacion_empresa, Tarea.comentario_calificacion_empresa ';
 		$sql .= ', Calificacion.titulo AS calificacion_empresa ';
 		$sql .= ', Actividad.id AS id_actividad, Actividad.titulo AS actividad_titulo, Actividad.descripcion AS actividad_descripcion';
@@ -132,12 +132,18 @@ class DAOTarea{
 		@return id {Integer} Identificador de la tarea insertada.
 	**/
 	public static function insertar($tarea, $usuario){
+
+		$imagenes = '';
+		for($i=0;$i<sizeof($tarea->imagenes);$i=$i+1){
+			$imagenes .= "".$tarea->imagenes[$i]." ";
+		}
+		
 		if (!BD::iniciarTransaccion())
 			throw new Exception('No es posible iniciar la transacción.');
-		$sql = 'INSERT INTO Tarea (id_alumno, titulo, descripcion , fecha,fecha_fin, id_calificacion_empresa, comentario_calificacion_empresa) ';
-		$sql .= 'VALUES (:id_alumno, :titulo, :descripcion, :fecha,:fecha_fin, :idCalificacionEmpresa, :comentarioCalificacionEmpresa)';
+		$sql = 'INSERT INTO Tarea (id_alumno, titulo,imagenes, descripcion , fecha,fecha_fin, id_calificacion_empresa, comentario_calificacion_empresa) ';
+		$sql .= 'VALUES (:id_alumno, :titulo, :imagenes,:descripcion, :fecha,:fecha_fin, :idCalificacionEmpresa, :comentarioCalificacionEmpresa)';
 		
-		$params = array('id_alumno' => $usuario->id, 'titulo'=>$tarea->titulo, 'descripcion'=>$tarea->descripcion, 'fecha'=>$tarea->fecha,'fecha_fin'=>$tarea->fecha_fin, 'idCalificacionEmpresa'=>$tarea->idCalificacionEmpresa, 'comentarioCalificacionEmpresa'=>$tarea->comentarioCalificacionEmpresa);
+		$params = array('id_alumno' => $usuario->id, 'titulo'=>$tarea->titulo,'imagenes'=>$imagenes, 'descripcion'=>$tarea->descripcion, 'fecha'=>$tarea->fecha,'fecha_fin'=>$tarea->fecha_fin, 'idCalificacionEmpresa'=>$tarea->idCalificacionEmpresa, 'comentarioCalificacionEmpresa'=>$tarea->comentarioCalificacionEmpresa);
 
 		$idNuevo = BD::insertar($sql, $params);
 
