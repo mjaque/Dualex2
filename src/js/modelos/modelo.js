@@ -114,14 +114,20 @@ export class Modelo {
     getCursos () {
       return Rest.get('curso')
     }
-
+    /**
+    Devuelve la lista de actividades del alumno con su nota media.
+    @return {Promise} Devuelve la promesa asociada a la petición.
+  **/
     getActividadNotas (id,periodo) {
       const queryParams = new Map()
       queryParams.set('id_alumno', id)
       queryParams.set('periodo', periodo)
       return Rest.get('actividad', ['actividadNota'], queryParams)
     }
-
+    /**
+    Devuelve la lista de módulos del alumno con su nota media.
+    @return {Promise} Devuelve la promesa asociada a la petición.
+  **/
     getModulosNotas (id,periodo) {
       const queryParams = new Map()
       queryParams.set('id_alumno', id)

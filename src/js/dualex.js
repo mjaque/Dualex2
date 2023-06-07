@@ -298,25 +298,54 @@ class DualEx {
     this.vistaCreditos.mostrar(true)
   }
 
+  /**
+   * Develve la lista de cursos existentes
+   * @returns array
+   */
   getCursos(){
     return this.modelo.getCursos()
   }
 
+  /**
+   * Develve la lista de alumnos de un profesor
+   * @returns array
+   */
   getAlumnosProfesor(){
     return this.modelo.getAlumnosProfesor()
   }
 
+  /**
+   * Develve la lista actividades de un alumno y su nota media
+   * @param id id del alumno del que queremos ver el informe.
+   * @param periodo periodo del que queremos ver el informe.
+   * @returns array
+   */
   traerActividadNotas(id,periodo){
     return this.modelo.getActividadNotas(id,periodo)
   }
+
+  /**
+   * Develve la lista módulos de un alumno y su nota media
+   * @param id id del alumno del que queremos ver el informe.
+   * @param periodo periodo del que queremos ver el informe.
+   * @returns array
+   */
   traerModulosNotas(id,periodo){
     return this.modelo.getModulosNotas(id,periodo)
   }
 
+  /**
+   * Develve la lista de tareas de un alumno
+   * @returns array
+   */
   traerTareas(){
     return this.modelo.getTareasAlumno(this.alumno)
   }
 
+  /**
+   * Cambia el nombre del título de la tarea en la barra superior/menú
+   * @param tarea tarea de la que queremos poner el título
+   */
   cargarNombreTarea(tarea){
     console.log(tarea.titulo)
     this.vistaMenu.verTarea(tarea)

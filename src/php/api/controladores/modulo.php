@@ -7,7 +7,7 @@ require_once('./daos/daomodulo.php');
 class Modulo{
 	/**
 		Devuelve la lista de modulos de un ciclo.
-		@param $pathParams {Array} Array de parámetros con el identificador del ciclo.
+		@param $pathParams {Array} Array de parámetros con el identificador del módulo.
 		@param $queryParams {Array} Array de parámetros. No se utiliza.
 		@param $usuario {Usuario} Usuario que realiza la petición.
 		@return {Array[Array[String]]}

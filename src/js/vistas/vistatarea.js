@@ -471,7 +471,7 @@ export class VistaTarea extends Vista{
     }
 
     /**
-    Recoge los datos de la tarea, guarda en bbdd y muestra la tarea anterior
+      Muestra la tarea anterior
   **/
     async anterior(){
       this.works = await this.controlador.traerTareas()
@@ -525,6 +525,7 @@ export class VistaTarea extends Vista{
         this.iImagenes.disabled = true
       }
     }
+
     /**
      * Establece el input en disabled si ya hay 3 imagenes en la bbdd
      */
@@ -534,6 +535,9 @@ export class VistaTarea extends Vista{
       }
     }
 
+    /**
+     * Cambia los valores de la imagen1 para ampliarla
+     */
     aumentar1(){
       this.imgImagen1.style.position = 'absolute'
       this.imgImagen1.style.height = '100vh'
@@ -541,12 +545,18 @@ export class VistaTarea extends Vista{
       this.imgImagen1.style.left='0'
     }
 
+    /**
+     * Cambia los valores de la imagen1 para disminuirla
+     */
     desaumentar1(){
       this.imgImagen1.style.position = 'inherit'
       this.imgImagen1.style.height = '60px'
       this.imgImagen1.style.width='60px'
     }
 
+    /**
+     * Cambia los valores de la imagen2 para ampliarla
+     */
     aumentar2(){
       this.imgImagen2.style.position = 'absolute'
       this.imgImagen2.style.height = '100vh'
@@ -554,19 +564,27 @@ export class VistaTarea extends Vista{
       this.imgImagen2.style.left='0'
     }
 
+    /**
+     * Cambia los valores de la imagen2 para disminuirla
+     */
     desaumentar2(){
       this.imgImagen2.style.position = 'inherit'
       this.imgImagen2.style.height = '60px'
       this.imgImagen2.style.width='60px'
     }
 
+    /**
+     * Cambia los valores de la imagen3 para ampliarla
+     */
     aumentar3(){
       this.imgImagen3.style.position = 'absolute'
       this.imgImagen3.style.height = '100vh'
       this.imgImagen3.style.width='100%'
       this.imgImagen3.style.left='0'
     }
-
+    /**
+     * Cambia los valores de la imagen3 para disminuirla
+     */
     desaumentar3(){
       this.imgImagen3.style.position = 'inherit'
       this.imgImagen3.style.height = '60px'

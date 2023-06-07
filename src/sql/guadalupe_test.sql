@@ -9444,10 +9444,12 @@ CREATE TABLE `Tarea` (
   `titulo` varchar(256) DEFAULT NULL,
   `descripcion` text DEFAULT NULL,
   `fecha` date DEFAULT NULL COMMENT 'Fecha de realización de la tarea',
+  `fecha_fin` DATE NULL DEFAULT NULL,
   `id_calificacion_empresa` int(10) UNSIGNED DEFAULT NULL COMMENT 'Calificación del tutor de empresa',
   `comentario_calificacion_empresa` text DEFAULT NULL,
-  `calificacion_v1` int(10) UNSIGNED DEFAULT NULL COMMENT 'Calificación del profesor.',
-  `evaluacion_v1` text DEFAULT NULL COMMENT 'Evaluación del profesor'
+  `calificacion_v1` BIT(1) NULL DEFAULT NULL COMMENT 'Calificación del profesor.',
+  `evaluacion_v1` text DEFAULT NULL COMMENT 'Evaluación del profesor',
+  `imagenes` LONGTEXT NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
