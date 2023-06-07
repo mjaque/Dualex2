@@ -41,9 +41,18 @@ export class VistaTarea extends Vista{
     this.btnSiguiente.addEventListener('click', this.aceptarYSiguiente.bind(this))
     this.btnAnterior.addEventListener('click', this.anterior.bind(this))
     this.iFechaInicio.addEventListener('change',this.cambioFecha.bind(this))
-    
+    this.numImagenes = 0
     this.imagenes = []
     this.iImagenes.addEventListener('change',this.anadirImagen.bind(this))
+
+    this.imgImagen1.addEventListener('mouseover',this.aumentar1.bind(this))
+    this.imgImagen1.addEventListener('mouseout',this.desaumentar1.bind(this))
+
+    this.imgImagen2.addEventListener('mouseover',this.aumentar2.bind(this))
+    this.imgImagen2.addEventListener('mouseout',this.desaumentar2.bind(this))
+
+    this.imgImagen3.addEventListener('mouseover',this.aumentar3.bind(this))
+    this.imgImagen3.addEventListener('mouseout',this.desaumentar3.bind(this))
 
     // Referencia a la tarea que se está mostrando
     this.tarea = null
@@ -56,21 +65,25 @@ export class VistaTarea extends Vista{
     @param tarea {Tarea} Información de la tarea.
   **/
   setTarea (tarea) {
+    this.iImagenes.disabled = false
     this.tarea = tarea
     console.log(tarea.imagenes)
-    if(tarea.imagenes){
+    if(tarea.imagenes!=null){
       var separador = ' '
       var cadena = tarea.imagenes.split(separador)
       if(cadena[0]){
         var separador = ' '
         var cadena = tarea.imagenes.split(separador)
         this.imgImagen1.src = cadena[0]
+        this.imgImagen2.src = 'vacia'
+        this.imgImagen3.src = 'vacia'
       }
       if(cadena[1]){
         var separador = ' '
         var cadena = tarea.imagenes.split(separador)
         this.imgImagen1.src = cadena[0]
         this.imgImagen2.src = cadena[1]
+        this.imgImagen3.src = 'vacia'
       }
       if(cadena[2]){
         var separador = ' '
@@ -80,20 +93,25 @@ export class VistaTarea extends Vista{
         this.imgImagen3.src = cadena[2]
       }
     }
+    else{
+      this.imgImagen1.src = 'vacia'
+      this.imgImagen2.src = 'vacia'
+      this.imgImagen3.src = 'vacia'
+    }
     
     
 
-    if(this.imgImagen1.src == ''){
+    if(this.imgImagen1.src == ' ' || this.imgImagen1.src==null || this.imgImagen1.src == '' || this.imgImagen1.src == 'http://localhost/dualex_fin/Dualex/src/'){
       console.log('imagen1 vacia')
       this.numImagenes = 0
     }
     else{
-      if(this.imgImagen2.src == ''){
+      if(this.imgImagen2.src == ' ' || this.imgImagen2.src==null || this.imgImagen2.src == '' || this.imgImagen2.src == 'http://localhost/dualex_fin/Dualex/src/'){
         console.log('imagen2 vacia')
         this.numImagenes = 1
       }
       else{
-        if(this.imgImagen3.src == ''){
+        if(this.imgImagen3.src == ' ' || this.imgImagen3.src==null || this.imgImagen3.src == '' || this.imgImagen3.src == 'http://localhost/dualex_fin/Dualex/src/'){
           console.log('imagen3 vacia')
           this.numImagenes = 2
         }
@@ -103,17 +121,15 @@ export class VistaTarea extends Vista{
         }
       }
     }
+
+    this.putSelectorImagen()
     
     this.iTitulo.value = tarea.titulo
     this.iFechaInicio.value = tarea.fecha
     this.iFechaFin.value = tarea.fecha_fin
     this.taDescripcion.value = tarea.descripcion
     this.taComentarioCalificacionEmpresa.value = tarea.comentario_calificacion_empresa
-    if(tarea.imagenes){
-      var separador = ' '
-      var cadena = tarea.imagenes.split(separador)
-      console.log(cadena)
-    }
+    
     
     // Seleccionamos la calificación de la empresa
     this.cargarCalificaciones()
@@ -327,9 +343,19 @@ export class VistaTarea extends Vista{
       tarea.fecha_fin = this.iFechaFin.value
       tarea.descripcion = this.taDescripcion.value
       tarea.actividades = []
-      this.imagenes[0]=this.imgImagen1.src
-      this.imagenes[1]=this.imgImagen2.src
-      this.imagenes[2]=this.imgImagen3.src
+      if(this.imagenes[0]){
+        this.imagenes[0]=this.imgImagen1.src
+      }
+      if(this.imagenes[1]){
+        this.imagenes[0]=this.imgImagen1.src
+        this.imagenes[1]=this.imgImagen2.src
+      }
+      if(this.imagenes[2]){
+        this.imagenes[0]=this.imgImagen1.src
+        this.imagenes[1]=this.imgImagen2.src
+        this.imagenes[2]=this.imgImagen3.src
+      }
+      
       tarea.imagenes = this.imagenes
       for (const iActividad of document.querySelectorAll('input[data-idActividad]')) {
         if (iActividad.checked) { tarea.actividades.push(iActividad.getAttribute('data-idActividad')) }
@@ -471,6 +497,9 @@ export class VistaTarea extends Vista{
       this.iFechaFin.value = this.iFechaInicio.value
     }
 
+    /**
+     * Añadir imagen al array y aumenta el valor del numImagenes para saber cuantas podemos introducir
+     */
     async anadirImagen(){
       if(this.numImagenes<3){
         let valorimagen = null
@@ -495,5 +524,52 @@ export class VistaTarea extends Vista{
       }else{
         this.iImagenes.disabled = true
       }
+    }
+    /**
+     * Establece el input en disabled si ya hay 3 imagenes en la bbdd
+     */
+    putSelectorImagen(){
+      if(this.numImagenes>=3){
+        this.iImagenes.disabled = true
+      }
+    }
+
+    aumentar1(){
+      this.imgImagen1.style.position = 'absolute'
+      this.imgImagen1.style.height = '100vh'
+      this.imgImagen1.style.width='100%'
+      this.imgImagen1.style.left='0'
+    }
+
+    desaumentar1(){
+      this.imgImagen1.style.position = 'inherit'
+      this.imgImagen1.style.height = '60px'
+      this.imgImagen1.style.width='60px'
+    }
+
+    aumentar2(){
+      this.imgImagen2.style.position = 'absolute'
+      this.imgImagen2.style.height = '100vh'
+      this.imgImagen2.style.width='100%'
+      this.imgImagen2.style.left='0'
+    }
+
+    desaumentar2(){
+      this.imgImagen2.style.position = 'inherit'
+      this.imgImagen2.style.height = '60px'
+      this.imgImagen2.style.width='60px'
+    }
+
+    aumentar3(){
+      this.imgImagen3.style.position = 'absolute'
+      this.imgImagen3.style.height = '100vh'
+      this.imgImagen3.style.width='100%'
+      this.imgImagen3.style.left='0'
+    }
+
+    desaumentar3(){
+      this.imgImagen3.style.position = 'inherit'
+      this.imgImagen3.style.height = '60px'
+      this.imgImagen3.style.width='60px'
     }
 }
