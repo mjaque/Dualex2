@@ -596,3 +596,14 @@ span.alumno:hover{
     float: right;
     margin-left: 5px;
 }
+
+#spanImg1,#spanImg2,#spanImg3{
+	/*display: none !important; */
+    width: 40px;
+    height: 40px;
+    float: right;
+    margin-left: 5px;
+	background-image: url('../iconos/delete.svg');
+	background-repeat: no-repeat;
+	background-size: contain;
+}

@@ -34,6 +34,9 @@ export class VistaTarea extends Vista{
     this.imgImagen1 = this.base.getElementsByTagName('img')[0]
     this.imgImagen2 = this.base.getElementsByTagName('img')[1]
     this.imgImagen3 = this.base.getElementsByTagName('img')[2]
+    this.spanImg1 = this.base.getElementsByTagName('span')[0]
+    this.spanImg2 = this.base.getElementsByTagName('span')[1]
+    this.spanImg3 = this.base.getElementsByTagName('span')[2]
 
     // Asociamos eventos
     this.btnAceptar.onclick = this.aceptar.bind(this)
@@ -53,6 +56,10 @@ export class VistaTarea extends Vista{
 
     this.imgImagen3.addEventListener('mouseover',this.aumentar3.bind(this))
     this.imgImagen3.addEventListener('mouseout',this.desaumentar3.bind(this))
+
+    this.spanImg1.addEventListener('click',this.borrar1.bind(this))
+    this.spanImg2.addEventListener('click',this.borrar2.bind(this))
+    this.spanImg3.addEventListener('click',this.borrar3.bind(this))
 
     // Referencia a la tarea que se está mostrando
     this.tarea = null
@@ -75,6 +82,7 @@ export class VistaTarea extends Vista{
         var separador = ' '
         var cadena = tarea.imagenes.split(separador)
         this.imgImagen1.src = cadena[0]
+        this.imagenes[0] = cadena[0]
         this.imgImagen2.src = ' '
         this.imgImagen3.src = ' '
       }
@@ -82,7 +90,9 @@ export class VistaTarea extends Vista{
         var separador = ' '
         var cadena = tarea.imagenes.split(separador)
         this.imgImagen1.src = cadena[0]
+        this.imagenes[0] = cadena[0]
         this.imgImagen2.src = cadena[1]
+        this.imagenes[1] = cadena[1]
         this.imgImagen3.src = ' '
       }
       if(cadena[2]){
@@ -91,6 +101,9 @@ export class VistaTarea extends Vista{
         this.imgImagen1.src = cadena[0]
         this.imgImagen2.src = cadena[1]
         this.imgImagen3.src = cadena[2]
+        this.imagenes[0] = cadena[0]
+        this.imagenes[1] = cadena[1]
+        this.imagenes[2] = cadena[2]
       }
     }
     else{
@@ -589,5 +602,24 @@ export class VistaTarea extends Vista{
       this.imgImagen3.style.position = 'inherit'
       this.imgImagen3.style.height = '60px'
       this.imgImagen3.style.width='60px'
+    }
+
+    /**
+     * Borra el src de la imagen1
+     */
+    borrar1(){
+      this.imgImagen1.src = ''
+    }
+    /**
+     * Borra el src de la imagen2
+     */
+    borrar2(){
+      this.imgImagen2.src = ''
+    }
+    /**
+     * Borra el src de la imagen3
+     */
+    borrar3(){
+      this.imgImagen3.src = ''
     }
 }
