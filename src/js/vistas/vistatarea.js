@@ -222,6 +222,7 @@ export class VistaTarea extends Vista{
     this.iTitulo.disabled = deshabilitar
     this.iFechaInicio.disabled = deshabilitar
     this.iFechaFin.disabled = deshabilitar
+    this.iImagenes.disabled = deshabilitar
     this.taDescripcion.disabled = deshabilitar
     this.btnAnterior.disabled = deshabilitar
     this.btnSiguiente.disabled = deshabilitar
@@ -341,6 +342,7 @@ export class VistaTarea extends Vista{
       // Validación de datos.
       if (this.iTitulo.value.length < 5) { throw Error('Debes especificar un título para la tarea que sea descriptivo.') }
       if (this.iFechaInicio.value === '') { throw Error('Debes especificar una fecha válida para la tarea.') }
+      if (this.iFechaFin.value === '') { throw Error('Debes especificar una fecha de fin válida para la tarea.') }
       if (new Date(this.iFechaFin.value) < new Date(this.iFechaInicio.value)) { throw Error('La fecha de fin no puede ser anterior a la de inicio.') }
       if (new Date(this.iFechaInicio.value) > new Date()) { throw Error('No registres tareas que no hayas hecho todavía.') }
       if (this.taDescripcion.length < 10) { throw Error('Debes describir detalladamente la tarea.') }
