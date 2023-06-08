@@ -48,14 +48,9 @@ export class VistaTarea extends Vista{
     this.imagenes = []
     this.iImagenes.addEventListener('change',this.anadirImagen.bind(this))
 
-    this.imgImagen1.addEventListener('mouseover',this.aumentar1.bind(this))
-    this.imgImagen1.addEventListener('mouseout',this.desaumentar1.bind(this))
-
-    this.imgImagen2.addEventListener('mouseover',this.aumentar2.bind(this))
-    this.imgImagen2.addEventListener('mouseout',this.desaumentar2.bind(this))
-
-    this.imgImagen3.addEventListener('mouseover',this.aumentar3.bind(this))
-    this.imgImagen3.addEventListener('mouseout',this.desaumentar3.bind(this))
+    this.imgImagen1.addEventListener('click',this.aumentar1.bind(this))
+    this.imgImagen2.addEventListener('click',this.aumentar2.bind(this))
+    this.imgImagen3.addEventListener('click',this.aumentar3.bind(this))
 
     this.spanImg1.addEventListener('click',this.borrar1.bind(this))
     this.spanImg2.addEventListener('click',this.borrar2.bind(this))
@@ -556,6 +551,8 @@ export class VistaTarea extends Vista{
       this.imgImagen1.style.height = '100vh'
       this.imgImagen1.style.width='100%'
       this.imgImagen1.style.left='0'
+      this.imgImagen1.addEventListener('click',this.desaumentar1.bind(this))
+      
     }
 
     /**
@@ -565,6 +562,7 @@ export class VistaTarea extends Vista{
       this.imgImagen1.style.position = 'inherit'
       this.imgImagen1.style.height = '60px'
       this.imgImagen1.style.width='60px'
+      this.imgImagen1.addEventListener('click',this.aumentar1.bind(this))
     }
 
     /**
@@ -575,6 +573,8 @@ export class VistaTarea extends Vista{
       this.imgImagen2.style.height = '100vh'
       this.imgImagen2.style.width='100%'
       this.imgImagen2.style.left='0'
+      this.imgImagen2.addEventListener('click',this.desaumentar2.bind(this))
+      
     }
 
     /**
@@ -584,6 +584,7 @@ export class VistaTarea extends Vista{
       this.imgImagen2.style.position = 'inherit'
       this.imgImagen2.style.height = '60px'
       this.imgImagen2.style.width='60px'
+      this.imgImagen2.addEventListener('click',this.aumentar2.bind(this))
     }
 
     /**
@@ -594,6 +595,8 @@ export class VistaTarea extends Vista{
       this.imgImagen3.style.height = '100vh'
       this.imgImagen3.style.width='100%'
       this.imgImagen3.style.left='0'
+      this.imgImagen3.addEventListener('click',this.desaumentar3.bind(this))
+      
     }
     /**
      * Cambia los valores de la imagen3 para disminuirla
@@ -602,6 +605,7 @@ export class VistaTarea extends Vista{
       this.imgImagen3.style.position = 'inherit'
       this.imgImagen3.style.height = '60px'
       this.imgImagen3.style.width='60px'
+      this.imgImagen3.addEventListener('click',this.aumentar3.bind(this))
     }
 
     /**
