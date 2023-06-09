@@ -9290,8 +9290,8 @@ CREATE TABLE `Log` (
   `controlador` varchar(256) DEFAULT NULL,
   `metodo` varchar(256) DEFAULT NULL,
   `pathParams` text DEFAULT NULL,
-  `queryParams` text DEFAULT NULL,
-  `body` text DEFAULT NULL
+  `queryParams` LONGTEXT DEFAULT NULL,
+  `body` LONGTEXT DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
