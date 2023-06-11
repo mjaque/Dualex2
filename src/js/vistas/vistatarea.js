@@ -116,17 +116,17 @@ export class VistaTarea extends Vista{
     
     
 
-    if(this.imgImagen1.src == ' ' || this.imgImagen1.src==null || this.imgImagen1.src == '' || this.imgImagen1.src == 'vacia' || this.imgImagen1.src == 'http://localhost/dualex_fin/Dualex/src/' || this.imgImagen1.src == 'http://localhost/dualex_fin/Dualex/src/vacia'){
+    if(this.imgImagen1.src == ' ' || this.imgImagen1.src=="https://guadalupe.fundacionloyola.net/dualex2/" || this.imgImagen1.src==null || this.imgImagen1.src == '' || this.imgImagen1.src == 'vacia' || this.imgImagen1.src == 'http://localhost/dualex_fin/Dualex/src/' || this.imgImagen1.src == 'http://localhost/dualex_fin/Dualex/src/vacia'){
       console.log('imagen1 vacia')
       this.numImagenes = 0
     }
     else{
-      if(this.imgImagen2.src == ' ' || this.imgImagen2.src==null || this.imgImagen2.src == '' || this.imgImagen2.src == 'vacia' || this.imgImagen2.src == 'http://localhost/dualex_fin/Dualex/src/' || this.imgImagen1.src == 'http://localhost/dualex_fin/Dualex/src/vacia'){
+      if(this.imgImagen2.src == ' ' ||  this.imgImagen2.src=="https://guadalupe.fundacionloyola.net/dualex2/" || this.imgImagen2.src==null || this.imgImagen2.src == '' || this.imgImagen2.src == 'vacia' || this.imgImagen2.src == 'http://localhost/dualex_fin/Dualex/src/' || this.imgImagen1.src == 'http://localhost/dualex_fin/Dualex/src/vacia'){
         console.log('imagen2 vacia')
         this.numImagenes = 1
       }
       else{
-        if(this.imgImagen3.src == ' ' || this.imgImagen3.src==null || this.imgImagen3.src == '' || this.imgImagen3.src == 'vacia' || this.imgImagen3.src == 'http://localhost/dualex_fin/Dualex/src/' || this.imgImagen1.src == 'http://localhost/dualex_fin/Dualex/src/vacia'){
+        if(this.imgImagen3.src == ' ' ||  this.imgImagen3.src=="https://guadalupe.fundacionloyola.net/dualex2/" || this.imgImagen3.src==null || this.imgImagen3.src == '' || this.imgImagen3.src == 'vacia' || this.imgImagen3.src == 'http://localhost/dualex_fin/Dualex/src/' || this.imgImagen1.src == 'http://localhost/dualex_fin/Dualex/src/vacia'){
           console.log('imagen3 vacia')
           this.numImagenes = 2
         }
@@ -440,30 +440,36 @@ export class VistaTarea extends Vista{
         // Validación de datos.
         if (this.iTitulo.value.length < 5) { throw Error('Debes especificar un título para la tarea que sea descriptivo.') }
         if (this.iFechaInicio.value === '') { throw Error('Debes especificar una fecha válida para la tarea.') }
+        if (this.iFechaFin.value === '') { throw Error('Debes especificar una fecha de fin válida para la tarea.') }
         if (new Date(this.iFechaFin.value) < new Date(this.iFechaInicio.value)) { throw Error('La fecha de fin no puede ser anterior a la de inicio.') }
         if (new Date(this.iFechaInicio.value) > new Date()) { throw Error('No registres tareas que no hayas hecho todavía.') }
         if (this.taDescripcion.length < 10) { throw Error('Debes describir detalladamente la tarea.') }
-  
+
         const tarea = {}
         tarea.titulo = this.iTitulo.value
         tarea.fecha = this.iFechaInicio.value
         tarea.fecha_fin = this.iFechaFin.value
         tarea.descripcion = this.taDescripcion.value
         tarea.actividades = []
-        if(this.imagenes!=null){
-          if(this.imagenes[0]!=null || this.imagenes[0]!=""){
+        console.log(this.imagenes)
+        if(this.imagenes!=null || this.imagenes[0]!=""){
+          if(this.imagenes[0]!=""){
+            console.log('entro if1')
             this.imagenes[0]=this.imgImagen1.src
           }
-          if(this.imagenes[1]!=null || this.imagenes[1]!=""){
+          if(this.imagenes[1]!=""){
+            console.log('entro if2')
             this.imagenes[0]=this.imgImagen1.src
             this.imagenes[1]=this.imgImagen2.src
           }
-          if(this.imagenes[2]!=null || this.imagenes[2]!=""){
+          if(this.imagenes[2]=""){
+            console.log('entro if3')
             this.imagenes[0]=this.imgImagen1.src
             this.imagenes[1]=this.imgImagen2.src
             this.imagenes[2]=this.imgImagen3.src
           }
         }
+        console.log(this.imagenes)
         tarea.imagenes = this.imagenes
         for (const iActividad of document.querySelectorAll('input[data-idActividad]')) {
           if (iActividad.checked) { tarea.actividades.push(iActividad.getAttribute('data-idActividad')) }
