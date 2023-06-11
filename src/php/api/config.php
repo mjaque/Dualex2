@@ -5,7 +5,7 @@
 	return array(
 		'debug' => true,
 		'test' => true,
-		'log' => true,
+		'log' => false,
 		'host' => '2daw.esvirgua.com',
 		'usuario' => 'user2daw_14',
 		'clave' => 'RuolZQ4M{}Nx',

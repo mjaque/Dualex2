@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: Vista</title>
+    <title>JSDoc: Class: VistaMenuContexto</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: Vista</h1>
+    <h1 class="page-title">Class: VistaMenuContexto</h1>
 
     
 
@@ -28,10 +28,10 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>Vista<span class="signature">(controlador)</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>VistaMenuContexto<span class="signature">(controlador, base)</span><span class="type-signature"></span></h2>
         
-            <div class="class-description">Clase Vista
-  Se utiliza como clase abstracta para derivar de ella las vistas de la aplicación.</div>
+            <div class="class-description">Vista del menú de contexto de la aplicación.
+  Muestra los enlaces de contexto.</div>
         
     
 </header>
@@ -46,7 +46,7 @@
     
 
     
-    <h4 class="name" id="Vista"><span class="type-signature"></span>new Vista<span class="signature">(controlador)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="VistaMenuContexto"><span class="type-signature"></span>new VistaMenuContexto<span class="signature">(controlador, base)</span><span class="type-signature"></span></h4>
     
 
     
@@ -106,7 +106,30 @@
 
             
 
-            <td class="description last">Controlador de la vista.</td>
+            <td class="description last">Controlador de la vista principal.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>base</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Node</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Nodo al que se añadirá la vista principal.</td>
         </tr>
 
     
@@ -147,7 +170,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vistas_vista.js.html">vistas/vista.js</a>, <a href="vistas_vista.js.html#line5">line 5</a>
+        <a href="vistas_vistamenucontexto.js.html">vistas/vistamenucontexto.js</a>, <a href="vistas_vistamenucontexto.js.html#line6">line 6</a>
     </li></ul></dd>
     
 
@@ -188,10 +211,10 @@
         <h3 class="subsection-title">Classes</h3>
 
         <dl>
-            <dt><a href="Vista.html">Vista</a></dt>
+            <dt><a href="VistaMenuContexto.html">VistaMenuContexto</a></dt>
             <dd></dd>
         
-            <dt><a href="Vista.html">Vista</a></dt>
+            <dt><a href="VistaMenuContexto.html">VistaMenuContexto</a></dt>
             <dd></dd>
         </dl>
     
@@ -213,7 +236,7 @@
     
 
     
-    <h4 class="name" id="eliminarHijos"><span class="type-signature"></span>eliminarHijos<span class="signature">(nodo, desde)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="cargar"><span class="type-signature"></span>cargar<span class="signature">(opciones)</span><span class="type-signature"></span></h4>
     
 
     
@@ -221,7 +244,7 @@
 
 
 <div class="description">
-    Elimina todos los nodos hijos de un nodo.
+    Carga las opciones del menú de contexto.
 </div>
 
 
@@ -247,8 +270,6 @@
         
 
         
-        <th>Default</th>
-        
 
         <th class="last">Description</th>
     </tr>
@@ -259,13 +280,13 @@
 
         <tr>
             
-                <td class="name"><code>nodo</code></td>
+                <td class="name"><code>opciones</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Node</span>
+<span class="param-type">Array</span>
 
 
             
@@ -274,41 +295,8 @@
             
 
             
-                <td class="default">
-                
-                </td>
-            
 
-            <td class="description last">Nodo del que se eliminarán los hijos.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>desde</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-
-            
-                <td class="default">
-                
-                    0
-                
-                </td>
-            
-
-            <td class="description last">Índice del nodo desde el que se eliminarán los hijos. Indicando desde = 1, se salva al primer hijo (nodo 0).</td>
+            <td class="description last">Array bidimensional de objetos opciones con título y callback.</td>
         </tr>
 
     
@@ -349,7 +337,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vistas_vista.js.html">vistas/vista.js</a>, <a href="vistas_vista.js.html#line20">line 20</a>
+        <a href="vistas_vistamenucontexto.js.html">vistas/vistamenucontexto.js</a>, <a href="vistas_vistamenucontexto.js.html#line23">line 23</a>
     </li></ul></dd>
     
 
@@ -385,7 +373,7 @@
     
 
     
-    <h4 class="name" id="eliminarHijos"><span class="type-signature"></span>eliminarHijos<span class="signature">(nodo, desde)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="cargar"><span class="type-signature"></span>cargar<span class="signature">(opciones)</span><span class="type-signature"></span></h4>
     
 
     
@@ -393,7 +381,7 @@
 
 
 <div class="description">
-    Elimina todos los nodos hijos de un nodo.
+    Carga las opciones del menú de contexto.
 </div>
 
 
@@ -419,8 +407,6 @@
         
 
         
-        <th>Default</th>
-        
 
         <th class="last">Description</th>
     </tr>
@@ -431,13 +417,13 @@
 
         <tr>
             
-                <td class="name"><code>nodo</code></td>
+                <td class="name"><code>opciones</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Node</span>
+<span class="param-type">Array</span>
 
 
             
@@ -446,41 +432,8 @@
             
 
             
-                <td class="default">
-                
-                </td>
-            
 
-            <td class="description last">Nodo del que se eliminarán los hijos.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>desde</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-
-            
-                <td class="default">
-                
-                    0
-                
-                </td>
-            
-
-            <td class="description last">Índice del nodo desde el que se eliminarán los hijos. Indicando desde = 1, se salva al primer hijo (nodo 0).</td>
+            <td class="description last">Array bidimensional de objetos opciones con título y callback.</td>
         </tr>
 
     
@@ -521,7 +474,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vistas_vista.js.html">vistas/vista.js</a>, <a href="vistas_vista.js.html#line20">line 20</a>
+        <a href="vistas_vistamenucontexto.js.html">vistas/vistamenucontexto.js</a>, <a href="vistas_vistamenucontexto.js.html#line23">line 23</a>
     </li></ul></dd>
     
 
@@ -693,7 +646,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vistas_vista.js.html">vistas/vista.js</a>, <a href="vistas_vista.js.html#line29">line 29</a>
+        <a href="vistas_vistamenucontexto.js.html">vistas/vistamenucontexto.js</a>, <a href="vistas_vistamenucontexto.js.html#line54">line 54</a>
     </li></ul></dd>
     
 
@@ -865,7 +818,327 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vistas_vista.js.html">vistas/vista.js</a>, <a href="vistas_vista.js.html#line29">line 29</a>
+        <a href="vistas_vistamenucontexto.js.html">vistas/vistamenucontexto.js</a>, <a href="vistas_vistamenucontexto.js.html#line54">line 54</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="mostrarEn"><span class="type-signature"></span>mostrarEn<span class="signature">(x, y)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Muestra el menú de contexto en las coordenadas indicadas.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>x</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Coordenada x.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>y</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Coordenada y.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="vistas_vistamenucontexto.js.html">vistas/vistamenucontexto.js</a>, <a href="vistas_vistamenucontexto.js.html#line38">line 38</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="mostrarEn"><span class="type-signature"></span>mostrarEn<span class="signature">(x, y)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Muestra el menú de contexto en las coordenadas indicadas.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>x</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Coordenada x.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>y</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Coordenada y.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="vistas_vistamenucontexto.js.html">vistas/vistamenucontexto.js</a>, <a href="vistas_vistamenucontexto.js.html#line38">line 38</a>
     </li></ul></dd>
     
 
@@ -916,10 +1189,10 @@
 <header>
     
         <h2><span class="attribs"><span class="type-signature"></span></span>
-            <span class="ancestors"><a href="Vista.html">Vista</a></span>Vista<span class="signature">(controlador)</span><span class="type-signature"></span></h2>
+            <span class="ancestors"><a href="VistaMenuContexto.html">VistaMenuContexto</a></span>VistaMenuContexto<span class="signature">(controlador, base)</span><span class="type-signature"></span></h2>
         
-            <div class="class-description">Clase Vista
-  Se utiliza como clase abstracta para derivar de ella las vistas de la aplicación.</div>
+            <div class="class-description">Vista del menú de contexto de la aplicación.
+  Muestra los enlaces de contexto.</div>
         
     
 </header>
@@ -934,7 +1207,7 @@
     
 
     
-    <h4 class="name" id="Vista"><span class="type-signature"></span>new Vista<span class="signature">(controlador)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="VistaMenuContexto"><span class="type-signature"></span>new VistaMenuContexto<span class="signature">(controlador, base)</span><span class="type-signature"></span></h4>
     
 
     
@@ -994,7 +1267,30 @@
 
             
 
-            <td class="description last">Controlador de la vista.</td>
+            <td class="description last">Controlador de la vista principal.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>base</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Node</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Nodo al que se añadirá la vista principal.</td>
         </tr>
 
     
@@ -1035,7 +1331,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vistas_vista.js.html">vistas/vista.js</a>, <a href="vistas_vista.js.html#line5">line 5</a>
+        <a href="vistas_vistamenucontexto.js.html">vistas/vistamenucontexto.js</a>, <a href="vistas_vistamenucontexto.js.html#line6">line 6</a>
     </li></ul></dd>
     
 
@@ -1076,10 +1372,10 @@
         <h3 class="subsection-title">Classes</h3>
 
         <dl>
-            <dt><a href="Vista.html">Vista</a></dt>
+            <dt><a href="VistaMenuContexto.html">VistaMenuContexto</a></dt>
             <dd></dd>
         
-            <dt><a href="Vista.html">Vista</a></dt>
+            <dt><a href="VistaMenuContexto.html">VistaMenuContexto</a></dt>
             <dd></dd>
         </dl>
     
@@ -1101,7 +1397,7 @@
     
 
     
-    <h4 class="name" id="eliminarHijos"><span class="type-signature"></span>eliminarHijos<span class="signature">(nodo, desde)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="cargar"><span class="type-signature"></span>cargar<span class="signature">(opciones)</span><span class="type-signature"></span></h4>
     
 
     
@@ -1109,7 +1405,7 @@
 
 
 <div class="description">
-    Elimina todos los nodos hijos de un nodo.
+    Carga las opciones del menú de contexto.
 </div>
 
 
@@ -1135,8 +1431,6 @@
         
 
         
-        <th>Default</th>
-        
 
         <th class="last">Description</th>
     </tr>
@@ -1147,13 +1441,13 @@
 
         <tr>
             
-                <td class="name"><code>nodo</code></td>
+                <td class="name"><code>opciones</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Node</span>
+<span class="param-type">Array</span>
 
 
             
@@ -1162,41 +1456,8 @@
             
 
             
-                <td class="default">
-                
-                </td>
-            
 
-            <td class="description last">Nodo del que se eliminarán los hijos.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>desde</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-
-            
-                <td class="default">
-                
-                    0
-                
-                </td>
-            
-
-            <td class="description last">Índice del nodo desde el que se eliminarán los hijos. Indicando desde = 1, se salva al primer hijo (nodo 0).</td>
+            <td class="description last">Array bidimensional de objetos opciones con título y callback.</td>
         </tr>
 
     
@@ -1237,7 +1498,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vistas_vista.js.html">vistas/vista.js</a>, <a href="vistas_vista.js.html#line20">line 20</a>
+        <a href="vistas_vistamenucontexto.js.html">vistas/vistamenucontexto.js</a>, <a href="vistas_vistamenucontexto.js.html#line23">line 23</a>
     </li></ul></dd>
     
 
@@ -1273,7 +1534,7 @@
     
 
     
-    <h4 class="name" id="eliminarHijos"><span class="type-signature"></span>eliminarHijos<span class="signature">(nodo, desde)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="cargar"><span class="type-signature"></span>cargar<span class="signature">(opciones)</span><span class="type-signature"></span></h4>
     
 
     
@@ -1281,7 +1542,7 @@
 
 
 <div class="description">
-    Elimina todos los nodos hijos de un nodo.
+    Carga las opciones del menú de contexto.
 </div>
 
 
@@ -1307,8 +1568,6 @@
         
 
         
-        <th>Default</th>
-        
 
         <th class="last">Description</th>
     </tr>
@@ -1319,13 +1578,13 @@
 
         <tr>
             
-                <td class="name"><code>nodo</code></td>
+                <td class="name"><code>opciones</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Node</span>
+<span class="param-type">Array</span>
 
 
             
@@ -1334,41 +1593,8 @@
             
 
             
-                <td class="default">
-                
-                </td>
-            
 
-            <td class="description last">Nodo del que se eliminarán los hijos.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>desde</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-
-            
-                <td class="default">
-                
-                    0
-                
-                </td>
-            
-
-            <td class="description last">Índice del nodo desde el que se eliminarán los hijos. Indicando desde = 1, se salva al primer hijo (nodo 0).</td>
+            <td class="description last">Array bidimensional de objetos opciones con título y callback.</td>
         </tr>
 
     
@@ -1409,7 +1635,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vistas_vista.js.html">vistas/vista.js</a>, <a href="vistas_vista.js.html#line20">line 20</a>
+        <a href="vistas_vistamenucontexto.js.html">vistas/vistamenucontexto.js</a>, <a href="vistas_vistamenucontexto.js.html#line23">line 23</a>
     </li></ul></dd>
     
 
@@ -1581,7 +1807,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vistas_vista.js.html">vistas/vista.js</a>, <a href="vistas_vista.js.html#line29">line 29</a>
+        <a href="vistas_vistamenucontexto.js.html">vistas/vistamenucontexto.js</a>, <a href="vistas_vistamenucontexto.js.html#line54">line 54</a>
     </li></ul></dd>
     
 
@@ -1753,7 +1979,327 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vistas_vista.js.html">vistas/vista.js</a>, <a href="vistas_vista.js.html#line29">line 29</a>
+        <a href="vistas_vistamenucontexto.js.html">vistas/vistamenucontexto.js</a>, <a href="vistas_vistamenucontexto.js.html#line54">line 54</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="mostrarEn"><span class="type-signature"></span>mostrarEn<span class="signature">(x, y)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Muestra el menú de contexto en las coordenadas indicadas.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>x</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Coordenada x.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>y</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Coordenada y.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="vistas_vistamenucontexto.js.html">vistas/vistamenucontexto.js</a>, <a href="vistas_vistamenucontexto.js.html#line38">line 38</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="mostrarEn"><span class="type-signature"></span>mostrarEn<span class="signature">(x, y)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Muestra el menú de contexto en las coordenadas indicadas.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>x</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Coordenada x.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>y</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Coordenada y.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="vistas_vistamenucontexto.js.html">vistas/vistamenucontexto.js</a>, <a href="vistas_vistamenucontexto.js.html#line38">line 38</a>
     </li></ul></dd>
     
 

@@ -1,4 +1,32 @@
-/**
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: vistas/vistatarea.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: vistas/vistatarea.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
 Vista con los datos de una tarea.
 **/
 
@@ -349,12 +377,12 @@ export class VistaTarea extends Vista{
     console.log(this.imagenes)
     try {
       // Validación de datos.
-      if (this.iTitulo.value.length < 5) { throw Error('Debes especificar un título para la tarea que sea descriptivo.') }
+      if (this.iTitulo.value.length &lt; 5) { throw Error('Debes especificar un título para la tarea que sea descriptivo.') }
       if (this.iFechaInicio.value === '') { throw Error('Debes especificar una fecha válida para la tarea.') }
       if (this.iFechaFin.value === '') { throw Error('Debes especificar una fecha de fin válida para la tarea.') }
-      if (new Date(this.iFechaFin.value) < new Date(this.iFechaInicio.value)) { throw Error('La fecha de fin no puede ser anterior a la de inicio.') }
+      if (new Date(this.iFechaFin.value) &lt; new Date(this.iFechaInicio.value)) { throw Error('La fecha de fin no puede ser anterior a la de inicio.') }
       if (new Date(this.iFechaInicio.value) > new Date()) { throw Error('No registres tareas que no hayas hecho todavía.') }
-      if (this.taDescripcion.length < 10) { throw Error('Debes describir detalladamente la tarea.') }
+      if (this.taDescripcion.length &lt; 10) { throw Error('Debes describir detalladamente la tarea.') }
 
       const tarea = {}
       tarea.titulo = this.iTitulo.value
@@ -429,7 +457,7 @@ export class VistaTarea extends Vista{
   **/
     async aceptarYSiguiente(){
       this.works = await this.controlador.traerTareas()
-      for(let i=0;i<this.works.length;i++){
+      for(let i=0;i&lt;this.works.length;i++){
         if(this.tarea.id == this.works[i].id){
             this.x = i
         }
@@ -438,11 +466,11 @@ export class VistaTarea extends Vista{
 
       try {
         // Validación de datos.
-        if (this.iTitulo.value.length < 5) { throw Error('Debes especificar un título para la tarea que sea descriptivo.') }
+        if (this.iTitulo.value.length &lt; 5) { throw Error('Debes especificar un título para la tarea que sea descriptivo.') }
         if (this.iFechaInicio.value === '') { throw Error('Debes especificar una fecha válida para la tarea.') }
-        if (new Date(this.iFechaFin.value) < new Date(this.iFechaInicio.value)) { throw Error('La fecha de fin no puede ser anterior a la de inicio.') }
+        if (new Date(this.iFechaFin.value) &lt; new Date(this.iFechaInicio.value)) { throw Error('La fecha de fin no puede ser anterior a la de inicio.') }
         if (new Date(this.iFechaInicio.value) > new Date()) { throw Error('No registres tareas que no hayas hecho todavía.') }
-        if (this.taDescripcion.length < 10) { throw Error('Debes describir detalladamente la tarea.') }
+        if (this.taDescripcion.length &lt; 10) { throw Error('Debes describir detalladamente la tarea.') }
   
         const tarea = {}
         tarea.titulo = this.iTitulo.value
@@ -511,7 +539,7 @@ export class VistaTarea extends Vista{
   **/
     async anterior(){
       this.works = await this.controlador.traerTareas()
-      for(let i=0;i<this.works.length;i++){
+      for(let i=0;i&lt;this.works.length;i++){
         if(this.tarea.id == this.works[i].id){
             this.x = i
         }
@@ -537,7 +565,7 @@ export class VistaTarea extends Vista{
      * Añadir imagen al array y aumenta el valor del numImagenes para saber cuantas podemos introducir
      */
     async anadirImagen(){
-      if(this.numImagenes<3){
+      if(this.numImagenes&lt;3){
         let valorimagen = null
         console.log(this.iImagenes.files[0])
         const archivo = this.iImagenes.files[0]
@@ -655,3 +683,26 @@ export class VistaTarea extends Vista{
       this.imgImagen3.src = ''
     }
 }
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="DualEx.html">DualEx</a></li><li><a href="Modelo.html">Modelo</a></li><li><a href="Rest.html">Rest</a></li><li><a href="Vista.html">Vista</a></li><li><a href="VistaAlumnos_VistaAlumnos.html">VistaAlumnos</a></li><li><a href="VistaCreditos_VistaCreditos.html">VistaCreditos</a></li><li><a href="VistaDialogo_VistaDialogo.html">VistaDialogo</a></li><li><a href="VistaInforme_VistaInforme.html">VistaInforme</a></li><li><a href="VistaLogin_VistaLogin.html">VistaLogin</a></li><li><a href="VistaMensaje_VistaMensaje.html">VistaMensaje</a></li><li><a href="VistaMenu_VistaMenu.html">VistaMenu</a></li><li><a href="VistaMenuContexto.html">VistaMenuContexto</a></li><li><a href="VistaTarea_VistaTarea.html">VistaTarea</a></li><li><a href="VistaTareas_VistaTareas.html">VistaTareas</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Sun Jun 11 2023 13:03:22 GMT+0200 (hora de verano de Europa central)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

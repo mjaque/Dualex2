@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: vistas/vista.js</title>
+    <title>JSDoc: Source: vistas/vistamensaje.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: vistas/vista.js</h1>
+    <h1 class="page-title">Source: vistas/vistamensaje.js</h1>
 
     
 
@@ -27,38 +27,47 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
-  Clase Vista
-  Se utiliza como clase abstracta para derivar de ella las vistas de la aplicación.
+  Vista de mensajes de la aplicación.
+  Muestra los mensajes de la aplicación.
 **/
-export class Vista {
+import { Vista } from './vista.js'
+
+export class VistaMensaje extends Vista{
+  static INFO = 'info'
+  static OK = 'ok'
+  static AVISO = 'aviso'
+  static ERROR = 'error'
   /**
     Constructor de la clase.
-    @param {Object} controlador Controlador de la vista.
+    @param {Object} controlador Controlador de la vista principal.
+    @param {Node} base Nodo al que se añadirá la vista principal.
   **/
-  constructor (controlador, display = 'block') {
-    this.controlador = controlador
-    this.display = display 
-  }
-
-  /**
-    Elimina todos los nodos hijos de un nodo.
-    @param nodo {Node} Nodo del que se eliminarán los hijos.
-  @param desde {Number} Índice del nodo desde el que se eliminarán los hijos. Indicando desde = 1, se salva al primer hijo (nodo 0).
-  **/
-  eliminarHijos (nodo, desde = 0) {
-    while (nodo.childNodes.length > desde) { nodo.removeChild(nodo.childNodes.item(desde)) }
-  }
-
-  /**
-    Muestra u oculta la vista.
-    @param mostrar {boolean} True para mostrar, false para ocultar.
-    @param modo {String} Valor del atributo display de CSS para mostrar la vista. Por defecto será el atributo display de la vista o 'block'.
-  **/
-  mostrar (mostrar = true, modo) {
-    if (!modo) {
-      if (!this.display) { modo = 'block' } else { modo = this.display }
+    constructor (controlador, base) {
+      super(controlador)
+      this.base = base
+    
+      // Cogemos referencias a los elementos del interfaz
+      this.btnCerrar = this.base.getElementsByTagName('span')[0]
+      this.spanMensaje = this.base.getElementsByTagName('span')[1]
+  
+      // Asociamos eventos
+      this.btnCerrar.onclick = this.cerrar.bind(this)
     }
-    if (mostrar) { this.base.style.display = modo } else { this.base.style.display = 'none' }
+
+  /**
+    Cierra el mensaje.
+  **/
+  cerrar () {
+    this.base.style.display = 'none'
+  }
+
+  mostrar (mensaje, nivel = VistaMensaje.ERROR) {
+    this.base.className = `vistamensaje ${nivel}`
+    this.spanMensaje.textContent = mensaje
+    this.base.style.display = 'block'
+    // Quitamos el mensaje a los 5 segundos
+    if (nivel !== VistaMensaje.ERROR) setTimeout(this.cerrar.bind(this), 5000)
+    if (nivel == VistaMensaje.ERROR) setTimeout(this.cerrar.bind(this), 10000)
   }
 }
 </code></pre>
