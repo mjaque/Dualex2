@@ -92,23 +92,16 @@ export class VistaInforme extends Vista {
         div.appendChild(div1)
         div1.setAttribute('id', 'divInformeActividad_' + dato.orden)
         div1.appendChild(document.createTextNode(dato.titulo))
-        /* if (dato.modulos)
-          //Ponemos los módulos de la actividad
-          for(let modulo of dato.modulos){
-            let span = document.createElement('span')
-            div1.appendChild(span)
-            span.classList.add('modulo')
-            span.textContent = modulo.codigo
-            span.setAttribute('title', modulo.titulo)
-            span.style.backgroundColor = modulo.color_fondo
-            span.style.color = modulo.color_letra
-          }
-        */
+        
         // Ponemos la calificación
         const div2 = document.createElement('div')
         div.appendChild(div2)
-        div2.textContent = this.actividades[i].nota_final.substring(0, this.actividades[i].nota_final.length - 2)
-        i++
+        console.log(dato.titulo.split('.')[0])
+        for(let i=0;i<this.actividades.length;i++){
+          if(this.actividades[i].id_actividad==dato.titulo.split('.')[0]){
+            div2.textContent = this.actividades[i].nota_final.substring(0, this.actividades[i].nota_final.length - 2)
+          }
+        }
       }
     }
     if(div.classList[0]=='grid3'){
@@ -117,23 +110,16 @@ export class VistaInforme extends Vista {
         div.appendChild(div1)
         div1.setAttribute('id', 'divInformeActividad_' + dato.orden)
         div1.appendChild(document.createTextNode(dato.titulo))
-        /* if (dato.modulos)
-          //Ponemos los módulos de la actividad
-          for(let modulo of dato.modulos){
-            let span = document.createElement('span')
-            div1.appendChild(span)
-            span.classList.add('modulo')
-            span.textContent = modulo.codigo
-            span.setAttribute('title', modulo.titulo)
-            span.style.backgroundColor = modulo.color_fondo
-            span.style.color = modulo.color_letra
-          }
-        */
+        
         // Ponemos la calificación
         const div2 = document.createElement('div')
         div.appendChild(div2)
-        div2.textContent = this.modulos[i].nota_final.substring(0, this.modulos[i].nota_final.length - 2)
-        i++
+        console.log(dato.titulo.split(' - ')[1])
+        for(let i=0;i<this.modulos.length;i++){
+          if(this.modulos[i].titulo===dato.titulo.split(' - ')[1]){
+            div2.textContent = this.modulos[i].nota_final.substring(0, this.modulos[i].nota_final.length - 2)
+          }
+        }
       }
     }
   }
