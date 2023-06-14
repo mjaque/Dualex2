@@ -96,9 +96,9 @@ export class VistaInforme extends Vista {
         // Ponemos la calificación
         const div2 = document.createElement('div')
         div.appendChild(div2)
-        console.log(dato.titulo.split('.')[0])
+        console.log(dato.titulo.split('.-')[1])
         for(let i=0;i<this.actividades.length;i++){
-          if(this.actividades[i].id_actividad==dato.titulo.split('.')[0]){
+          if(this.actividades[i].titulo===dato.titulo.split('.-')[1]){
             div2.textContent = this.actividades[i].nota_final.substring(0, this.actividades[i].nota_final.length - 2)
           }
         }
