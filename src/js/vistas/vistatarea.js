@@ -373,7 +373,7 @@ export class VistaTarea extends Vista{
           this.imagenes[0]=this.imgImagen1.src
           this.imagenes[1]=this.imgImagen2.src
         }
-        if(this.imagenes[2]=""){
+        if(this.imagenes[2]!=""){
           console.log('entro if3')
           this.imagenes[0]=this.imgImagen1.src
           this.imagenes[1]=this.imgImagen2.src
