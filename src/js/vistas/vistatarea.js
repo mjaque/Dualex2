@@ -68,7 +68,6 @@ export class VistaTarea extends Vista{
   setTarea (tarea) {
     this.iImagenes.disabled = false
     this.tarea = tarea
-    console.log(tarea.imagenes)
 
 		/* Creación de las imágenes */
 		/*
@@ -352,21 +351,11 @@ export class VistaTarea extends Vista{
       tarea.fecha = this.iFechaInicio.value
       tarea.fecha_fin = this.iFechaFin.value
       tarea.descripcion = this.taDescripcion.value
+			tarea.imagenes = []
+			this.divImagenes.querySelectorAll('.imgTarea').forEach( 
+				img => tarea.imagenes.push(img.src)
+			)
       tarea.actividades = []
-      if(this.imagenes[0]){
-        this.imagenes[0]=this.imgImagen1.src
-      }
-      if(this.imagenes[1]){
-        this.imagenes[0]=this.imgImagen1.src
-        this.imagenes[1]=this.imgImagen2.src
-      }
-      if(this.imagenes[2]){
-        this.imagenes[0]=this.imgImagen1.src
-        this.imagenes[1]=this.imgImagen2.src
-        this.imagenes[2]=this.imgImagen3.src
-      }
-      
-      tarea.imagenes = this.imagenes
       for (const iActividad of document.querySelectorAll('input[data-idActividad]')) {
         if (iActividad.checked) { tarea.actividades.push(iActividad.getAttribute('data-idActividad')) }
       }
@@ -516,16 +505,8 @@ export class VistaTarea extends Vista{
         const archivo = this.iImagenes.files[0]
         const lector = new FileReader()
         lector.addEventListener('load',() => {
-          console.log(lector.result)
           valorimagen = lector.result
 					this.crearImagen(valorimagen)
-/*
-          this.imagenes[this.numImagenes]= valorimagen
-          console.log(this.imagenes[this.numImagenes])
-          var imgImagen = this.base.getElementsByTagName('img')[this.numImagenes]
-          imgImagen.src = this.imagenes[this.numImagenes]
-          this.numImagenes++
-*/
           this.iImagenes.value = ''
         })
         lector.readAsDataURL(archivo)
@@ -540,7 +521,7 @@ export class VistaTarea extends Vista{
 			let img = document.createElement('img')
 			this.divImagenes.appendChild(img)
 			img.src = base64Imagen
-    	//img.onclick = () => img.classList.toggle('ampliada')
+			img.classList.add('imgTarea')
     	img.onclick = () => {
 				this.imgAmpliada.src = img.src
 				this.imgAmpliada.classList.toggle('ampliada')

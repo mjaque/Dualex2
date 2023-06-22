@@ -188,16 +188,13 @@ class DualEx {
   **/
   mostrarTarea (tarea) {
     if (tarea) {
-      console.log('llego')
       this.modelo.getTarea(tarea.id)
         .then(tareas => {
-          console.log('llego al then')
           this.vistaMenu.verTarea(tareas[0])
           this.ocultarVistas()
           this.vistaTarea.mostrar(true, tareas[0])
         })
     } else {
-      console.log('llego else')
       this.vistaMenu.verTarea(null)
       this.ocultarVistas()
       this.vistaTarea.mostrar(true)
