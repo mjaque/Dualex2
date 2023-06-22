@@ -20,23 +20,19 @@ export class VistaTarea extends Vista{
     this.iTitulo = this.base.getElementsByTagName('input')[0]
     this.iFechaInicio = this.base.getElementsByTagName('input')[1]
     this.iFechaFin = this.base.getElementsByTagName('input')[2]
+		this.imgAmpliada = this.base.querySelectorAll('img')[0]
     this.iImagenes = this.base.getElementsByTagName('input')[3]
     this.taDescripcion =  this.base.getElementsByTagName('textarea')[0]
-    this.divActividades =  this.base.querySelectorAll('div')[0] //Primer div dentro de divTarea
+    this.divImagenes =  this.base.querySelectorAll('div')[0] //Primer div dentro de divTarea
+    this.divActividades =  this.base.querySelectorAll('div')[1] //Segundo div dentro de divTarea
     this.sCalificacion = this.base.getElementsByTagName('select')[0]
     this.taComentarioCalificacionEmpresa =  this.base.getElementsByTagName('textarea')[1]
-    this.divEvaluaciones =  this.base.querySelectorAll('div')[1]	//Es el segundo div dentro de divTarea
-    this.divBotones = this.base.querySelectorAll('div')[2]	//Tercer div dentro de divTarea
+    this.divEvaluaciones =  this.base.querySelectorAll('div')[2]	//Es el tercer div dentro de divTarea
+    this.divBotones = this.base.querySelectorAll('div')[3]	//Cuarto div dentro de divTarea
     this.btnCancelar =  this.base.getElementsByTagName('button')[0]
     this.btnAceptar =  this.base.getElementsByTagName('button')[1]
     this.btnAnterior =  this.base.getElementsByTagName('button')[2]
     this.btnSiguiente =  this.base.getElementsByTagName('button')[3]
-    this.imgImagen1 = this.base.getElementsByTagName('img')[0]
-    this.imgImagen2 = this.base.getElementsByTagName('img')[1]
-    this.imgImagen3 = this.base.getElementsByTagName('img')[2]
-    this.spanImg1 = this.base.getElementsByTagName('span')[0]
-    this.spanImg2 = this.base.getElementsByTagName('span')[1]
-    this.spanImg3 = this.base.getElementsByTagName('span')[2]
 
     // Asociamos eventos
     this.btnAceptar.onclick = this.aceptar.bind(this)
@@ -44,10 +40,13 @@ export class VistaTarea extends Vista{
     this.btnSiguiente.addEventListener('click', this.aceptarYSiguiente.bind(this))
     this.btnAnterior.addEventListener('click', this.anterior.bind(this))
     this.iFechaInicio.addEventListener('change',this.cambioFecha.bind(this))
+		this.imgAmpliada.onclick = () => this.imgAmpliada.classList.toggle('ampliada')
+		
     this.numImagenes = 0
     this.imagenes = []
     this.iImagenes.addEventListener('change',this.anadirImagen.bind(this))
 
+		/*
     this.imgImagen1.addEventListener('click',this.aumentar1.bind(this))
     this.imgImagen2.addEventListener('click',this.aumentar2.bind(this))
     this.imgImagen3.addEventListener('click',this.aumentar3.bind(this))
@@ -55,7 +54,7 @@ export class VistaTarea extends Vista{
     this.spanImg1.addEventListener('click',this.borrar1.bind(this))
     this.spanImg2.addEventListener('click',this.borrar2.bind(this))
     this.spanImg3.addEventListener('click',this.borrar3.bind(this))
-
+*/
     // Referencia a la tarea que se está mostrando
     this.tarea = null
     this.array = null
@@ -70,12 +69,13 @@ export class VistaTarea extends Vista{
     this.iImagenes.disabled = false
     this.tarea = tarea
     console.log(tarea.imagenes)
-    if(tarea.imagenes!=null){
+
+		/* Creación de las imágenes */
+		/*
+    if(tarea.imagenes != ''){	//tarea.imagenes es un String. No va a ser null
       var separador = ' '
       var cadena = tarea.imagenes.split(separador)
-      console.log(cadena)
-      if(cadena[0]!=""){
-        console.log('if1')
+      if(cadena[0]){
         var separador = ' '
         var cadena = tarea.imagenes.split(separador)
         this.imgImagen1.src = cadena[0]
@@ -83,8 +83,7 @@ export class VistaTarea extends Vista{
         this.imgImagen2.src = ' '
         this.imgImagen3.src = ' '
       }
-      if(cadena[1]!=""){
-        console.log('if2')
+      if(cadena[1]){
         var separador = ' '
         var cadena = tarea.imagenes.split(separador)
         this.imgImagen1.src = cadena[0]
@@ -93,8 +92,7 @@ export class VistaTarea extends Vista{
         this.imagenes[1] = cadena[1]
         this.imgImagen3.src = ' '
       }
-      if(cadena[2]!=""){
-        console.log('if3')
+      if(cadena[2]){
         var separador = ' '
         var cadena = tarea.imagenes.split(separador)
         this.imgImagen1.src = cadena[0]
@@ -109,24 +107,20 @@ export class VistaTarea extends Vista{
       this.imgImagen1.src = ' '
       this.imgImagen2.src = ' '
       this.imgImagen3.src = ' '
-      this.imagenes[0]=""
-      this.imagenes[1]=""
-      this.imagenes[2]=""
     }
     
-    
 
-    if(this.imgImagen1.src == ' ' || this.imgImagen1.src=="https://guadalupe.fundacionloyola.net/dualex2/" || this.imgImagen1.src==null || this.imgImagen1.src == '' || this.imgImagen1.src == 'vacia' || this.imgImagen1.src == 'http://localhost/dualex_fin/Dualex/src/' || this.imgImagen1.src == 'http://localhost/dualex_fin/Dualex/src/vacia'){
+    if(this.imgImagen1.src == ' ' || this.imgImagen1.src==null || this.imgImagen1.src == '' || this.imgImagen1.src == 'vacia' || this.imgImagen1.src == 'http://localhost/dualex_fin/Dualex/src/' || this.imgImagen1.src == 'http://localhost/dualex_fin/Dualex/src/vacia'){
       console.log('imagen1 vacia')
       this.numImagenes = 0
     }
     else{
-      if(this.imgImagen2.src == ' ' ||  this.imgImagen2.src=="https://guadalupe.fundacionloyola.net/dualex2/" || this.imgImagen2.src==null || this.imgImagen2.src == '' || this.imgImagen2.src == 'vacia' || this.imgImagen2.src == 'http://localhost/dualex_fin/Dualex/src/' || this.imgImagen1.src == 'http://localhost/dualex_fin/Dualex/src/vacia'){
+      if(this.imgImagen2.src == ' ' || this.imgImagen2.src==null || this.imgImagen2.src == '' || this.imgImagen2.src == 'vacia' || this.imgImagen2.src == 'http://localhost/dualex_fin/Dualex/src/' || this.imgImagen1.src == 'http://localhost/dualex_fin/Dualex/src/vacia'){
         console.log('imagen2 vacia')
         this.numImagenes = 1
       }
       else{
-        if(this.imgImagen3.src == ' ' ||  this.imgImagen3.src=="https://guadalupe.fundacionloyola.net/dualex2/" || this.imgImagen3.src==null || this.imgImagen3.src == '' || this.imgImagen3.src == 'vacia' || this.imgImagen3.src == 'http://localhost/dualex_fin/Dualex/src/' || this.imgImagen1.src == 'http://localhost/dualex_fin/Dualex/src/vacia'){
+        if(this.imgImagen3.src == ' ' || this.imgImagen3.src==null || this.imgImagen3.src == '' || this.imgImagen3.src == 'vacia' || this.imgImagen3.src == 'http://localhost/dualex_fin/Dualex/src/' || this.imgImagen1.src == 'http://localhost/dualex_fin/Dualex/src/vacia'){
           console.log('imagen3 vacia')
           this.numImagenes = 2
         }
@@ -138,7 +132,9 @@ export class VistaTarea extends Vista{
     }
 
     this.putSelectorImagen()
-    
+   */
+
+
     this.iTitulo.value = tarea.titulo
     this.iFechaInicio.value = tarea.fecha
     this.iFechaFin.value = tarea.fecha_fin
@@ -200,7 +196,6 @@ export class VistaTarea extends Vista{
     }
     // Marcamos las actividades de la tarea
     for (const actividad of tarea.actividades) { this.divActividades.querySelector('input[data-idActividad="' + actividad.id + '"').checked = true }
-    console.log(this.imagenes)
   }
 
   /**
@@ -285,10 +280,7 @@ export class VistaTarea extends Vista{
     this.taDescripcion.value = ''
     this.sCalificacion.selectedIndex = 0
     this.taComentarioCalificacionEmpresa.value = ''
-    this.imgImagen1.src = ''
-    this.imgImagen2.src = ''
-    this.imgImagen3.src = ''
-    this.iImagenes.value= ''
+    while (this.divImagenes.firstChild) { this.divImagenes.firstChild.remove() }
     while (this.divEvaluaciones.firstChild) { this.divEvaluaciones.firstChild.remove() }
   }
 
@@ -346,7 +338,6 @@ export class VistaTarea extends Vista{
     Recoge los datos de la Tarea y la envía al controlador.
   **/
   aceptar () {
-    console.log(this.imagenes)
     try {
       // Validación de datos.
       if (this.iTitulo.value.length < 5) { throw Error('Debes especificar un título para la tarea que sea descriptivo.') }
@@ -362,25 +353,19 @@ export class VistaTarea extends Vista{
       tarea.fecha_fin = this.iFechaFin.value
       tarea.descripcion = this.taDescripcion.value
       tarea.actividades = []
-      console.log(this.imagenes)
-      if(this.imagenes!=null || this.imagenes[0]!=""){
-        if(this.imagenes[0]!=""){
-          console.log('entro if1')
-          this.imagenes[0]=this.imgImagen1.src
-        }
-        if(this.imagenes[1]!=""){
-          console.log('entro if2')
-          this.imagenes[0]=this.imgImagen1.src
-          this.imagenes[1]=this.imgImagen2.src
-        }
-        if(this.imagenes[2]!=""){
-          console.log('entro if3')
-          this.imagenes[0]=this.imgImagen1.src
-          this.imagenes[1]=this.imgImagen2.src
-          this.imagenes[2]=this.imgImagen3.src
-        }
+      if(this.imagenes[0]){
+        this.imagenes[0]=this.imgImagen1.src
       }
-      console.log(this.imagenes)
+      if(this.imagenes[1]){
+        this.imagenes[0]=this.imgImagen1.src
+        this.imagenes[1]=this.imgImagen2.src
+      }
+      if(this.imagenes[2]){
+        this.imagenes[0]=this.imgImagen1.src
+        this.imagenes[1]=this.imgImagen2.src
+        this.imagenes[2]=this.imgImagen3.src
+      }
+      
       tarea.imagenes = this.imagenes
       for (const iActividad of document.querySelectorAll('input[data-idActividad]')) {
         if (iActividad.checked) { tarea.actividades.push(iActividad.getAttribute('data-idActividad')) }
@@ -440,36 +425,19 @@ export class VistaTarea extends Vista{
         // Validación de datos.
         if (this.iTitulo.value.length < 5) { throw Error('Debes especificar un título para la tarea que sea descriptivo.') }
         if (this.iFechaInicio.value === '') { throw Error('Debes especificar una fecha válida para la tarea.') }
-        if (this.iFechaFin.value === '') { throw Error('Debes especificar una fecha de fin válida para la tarea.') }
         if (new Date(this.iFechaFin.value) < new Date(this.iFechaInicio.value)) { throw Error('La fecha de fin no puede ser anterior a la de inicio.') }
         if (new Date(this.iFechaInicio.value) > new Date()) { throw Error('No registres tareas que no hayas hecho todavía.') }
         if (this.taDescripcion.length < 10) { throw Error('Debes describir detalladamente la tarea.') }
-
+  
         const tarea = {}
         tarea.titulo = this.iTitulo.value
         tarea.fecha = this.iFechaInicio.value
         tarea.fecha_fin = this.iFechaFin.value
         tarea.descripcion = this.taDescripcion.value
         tarea.actividades = []
-        console.log(this.imagenes)
-        if(this.imagenes!=null || this.imagenes[0]!=""){
-          if(this.imagenes[0]!=""){
-            console.log('entro if1')
-            this.imagenes[0]=this.imgImagen1.src
-          }
-          if(this.imagenes[1]!=""){
-            console.log('entro if2')
-            this.imagenes[0]=this.imgImagen1.src
-            this.imagenes[1]=this.imgImagen2.src
-          }
-          if(this.imagenes[2]!=""){
-            console.log('entro if3')
-            this.imagenes[0]=this.imgImagen1.src
-            this.imagenes[1]=this.imgImagen2.src
-            this.imagenes[2]=this.imgImagen3.src
-          }
-        }
-        console.log(this.imagenes)
+        this.imagenes[0]=this.imgImagen1.src
+        this.imagenes[1]=this.imgImagen2.src
+        this.imagenes[2]=this.imgImagen3.src
         tarea.imagenes = this.imagenes
         for (const iActividad of document.querySelectorAll('input[data-idActividad]')) {
           if (iActividad.checked) { tarea.actividades.push(iActividad.getAttribute('data-idActividad')) }
@@ -543,7 +511,6 @@ export class VistaTarea extends Vista{
      * Añadir imagen al array y aumenta el valor del numImagenes para saber cuantas podemos introducir
      */
     async anadirImagen(){
-      if(this.numImagenes<3){
         let valorimagen = null
         console.log(this.iImagenes.files[0])
         const archivo = this.iImagenes.files[0]
@@ -551,23 +518,42 @@ export class VistaTarea extends Vista{
         lector.addEventListener('load',() => {
           console.log(lector.result)
           valorimagen = lector.result
+					this.crearImagen(valorimagen)
+/*
           this.imagenes[this.numImagenes]= valorimagen
           console.log(this.imagenes[this.numImagenes])
           var imgImagen = this.base.getElementsByTagName('img')[this.numImagenes]
           imgImagen.src = this.imagenes[this.numImagenes]
           this.numImagenes++
+*/
           this.iImagenes.value = ''
-          if(this.numImagenes==3){
-            this.iImagenes.disabled = true
-          }
         })
         lector.readAsDataURL(archivo)
-        
-      }else{
-        this.iImagenes.disabled = true
-      }
     }
 
+		/**
+			Crea un div con la imagen y el icono de borrado y los añade al divImagenes.
+			@param base64Imagen {String} Texto con la imagen codificada en Base64.
+		**/
+		crearImagen(base64Imagen){
+    	this.imagenes.push(base64Imagen)
+			let img = document.createElement('img')
+			this.divImagenes.appendChild(img)
+			img.src = base64Imagen
+    	//img.onclick = () => img.classList.toggle('ampliada')
+    	img.onclick = () => {
+				this.imgAmpliada.src = img.src
+				this.imgAmpliada.classList.toggle('ampliada')
+			}
+
+			let iconoEliminar = document.createElement('img')
+			iconoEliminar.src = './iconos/delete.svg'
+			iconoEliminar.title = 'eliminar la imagen'
+    	//this.spanImg1.addEventListener('click',this.borrar1.bind(this))
+
+			this.divImagenes.appendChild(img)
+			this.divImagenes.appendChild(iconoEliminar)
+		}
     /**
      * Establece el input en disabled si ya hay 3 imagenes en la bbdd
      */
@@ -579,8 +565,10 @@ export class VistaTarea extends Vista{
 
     /**
      * Cambia los valores de la imagen1 para ampliarla
+		 @param img {ImgElement} Elemento <img> a ampliar
      */
-    aumentar1(){
+    aumentar(img){
+			img.classList.toggle('ampliada')
       this.imgImagen1.style.position = 'absolute'
       this.imgImagen1.style.height = '100vh'
       this.imgImagen1.style.width='100%'
