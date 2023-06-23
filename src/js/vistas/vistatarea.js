@@ -31,14 +31,14 @@ export class VistaTarea extends Vista{
     this.divBotones = this.base.querySelectorAll('div')[3]	//Cuarto div dentro de divTarea
     this.btnCancelar =  this.base.getElementsByTagName('button')[0]
     this.btnAceptar =  this.base.getElementsByTagName('button')[1]
-    this.btnAnterior =  this.base.getElementsByTagName('button')[2]
-    this.btnSiguiente =  this.base.getElementsByTagName('button')[3]
+	  this.btnAnterior =  this.base.getElementsByTagName('button')[2]
+  	this.btnSiguiente =  this.base.getElementsByTagName('button')[3]
 
     // Asociamos eventos
     this.btnAceptar.onclick = this.aceptar.bind(this)
     this.btnCancelar.onclick = this.cancelar.bind(this)
-    this.btnSiguiente.addEventListener('click', this.aceptarYSiguiente.bind(this))
-    this.btnAnterior.addEventListener('click', this.anterior.bind(this))
+	  this.btnSiguiente.addEventListener('click', this.aceptarYSiguiente.bind(this))
+  	this.btnAnterior.addEventListener('click', this.anterior.bind(this))
     this.iFechaInicio.addEventListener('change',this.cambioFecha.bind(this))
 		this.imgAmpliada.onclick = () => this.imgAmpliada.classList.toggle('ampliada')
 		
@@ -46,15 +46,6 @@ export class VistaTarea extends Vista{
     this.imagenes = []
     this.iImagenes.addEventListener('change',this.anadirImagen.bind(this))
 
-		/*
-    this.imgImagen1.addEventListener('click',this.aumentar1.bind(this))
-    this.imgImagen2.addEventListener('click',this.aumentar2.bind(this))
-    this.imgImagen3.addEventListener('click',this.aumentar3.bind(this))
-
-    this.spanImg1.addEventListener('click',this.borrar1.bind(this))
-    this.spanImg2.addEventListener('click',this.borrar2.bind(this))
-    this.spanImg3.addEventListener('click',this.borrar3.bind(this))
-*/
     // Referencia a la tarea que se está mostrando
     this.tarea = null
     this.array = null
@@ -66,6 +57,12 @@ export class VistaTarea extends Vista{
     @param tarea {Tarea} Información de la tarea.
   **/
   setTarea (tarea) {
+
+		if (this.controlador.getUsuario().rol !== 'profesor'){
+	  	this.btnAnterior.style.display = 'none'
+  		this.btnSiguiente.style.display = 'none'
+		}
+
     this.iImagenes.disabled = false
     this.tarea = tarea
 
@@ -171,6 +168,8 @@ export class VistaTarea extends Vista{
       }
       if (this.controlador.getUsuario().rol === 'profesor') {
         const iCalificacion = document.createElement('input')
+	  this.btnAnterior =  this.base.getElementsByTagName('button')[2]
+  	this.btnSiguiente =  this.base.getElementsByTagName('button')[3]
         div.appendChild(iCalificacion)
         iCalificacion.value = modulo.calificacion
         iCalificacion.setAttribute('type', 'checkbox')
