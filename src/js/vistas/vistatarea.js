@@ -57,12 +57,6 @@ export class VistaTarea extends Vista{
     @param tarea {Tarea} Información de la tarea.
   **/
   setTarea (tarea) {
-
-		if (this.controlador.getUsuario().rol !== 'profesor'){
-	  	this.btnAnterior.style.display = 'none'
-  		this.btnSiguiente.style.display = 'none'
-		}
-
     this.iImagenes.disabled = false
     this.tarea = tarea
 
@@ -249,6 +243,11 @@ export class VistaTarea extends Vista{
     @param tarea {Tarea} Información de la tarea que se quiere mostrar (solo en edición).
   **/
   mostrar (ver, tarea = null) {
+		if (this.controlador.getUsuario().rol !== 'profesor'){
+	  	this.btnAnterior.style.display = 'none'
+  		this.btnSiguiente.style.display = 'none'
+		}
+
     if (ver) {
       this.limpiar()
       this.deshabilitar(false)

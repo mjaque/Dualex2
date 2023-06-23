@@ -57,7 +57,7 @@ class DAOTarea{
 		$sql .= 'LEFT JOIN Modulo ON Modulo.id = Actividad_Modulo.id_modulo ';
 		$sql .= 'LEFT JOIN Curso_Modulo ON Modulo.id = Curso_Modulo.id_modulo ';
 		$sql .= 'LEFT JOIN Actividad_Modulo_Tarea ON (Actividad.id = Actividad_Modulo_Tarea.id_actividad AND Modulo.id = Actividad_Modulo_Tarea.id_modulo AND Tarea.id = Actividad_Modulo_Tarea.id_tarea) ';
-		$sql .= 'JOIN Imagen_Tarea ON Imagen_Tarea.idTarea = Tarea.id ';
+		$sql .= 'LEFT JOIN Imagen_Tarea ON Imagen_Tarea.idTarea = Tarea.id ';
 		$sql .= 'WHERE Tarea.id_alumno = :id_alumno AND Tarea.id = :id_tarea ';
 		$sql .= 'ORDER BY Actividad.titulo, Tarea.titulo ';
 		
