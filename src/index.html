@@ -5,6 +5,13 @@
 	<meta charset=utf-8 />
 	<meta name=viewport content='width=device-width, initial-scale=1' />
 	<meta name=author content='Miguel Jaque <mjaque@migueljaque.com' />
+	<!-- Evitamos que se cargen contenidos de otros dominios
+	ACTIVAR EN PRODUCCIÓN
+	<meta http-equiv='Content-Security-Policy' content="default-src 'self';" />
+	-->
+	<!-- Obligamos al navegador a acceder solo por HTTPS -->
+	<meta http-equiv='Strict-Transport-Security' content=': max-age=2592000' />
+
 	<title>DUALEX - Evaluación de Formación DUAL</title>
 
 	<link rel=stylesheet href=css/reset.css />

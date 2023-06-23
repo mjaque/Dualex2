@@ -70,6 +70,7 @@ export class VistaTarea extends Vista{
     this.tarea = tarea
 
 		/* Creación de las imágenes */
+		this.tarea.imagenes.forEach( imagen => this.crearImagen(imagen) )
 		/*
     if(tarea.imagenes != ''){	//tarea.imagenes es un String. No va a ser null
       var separador = ' '
@@ -465,8 +466,6 @@ export class VistaTarea extends Vista{
         this.controlador.gestionarError(e)
         window.scroll(0,0)
       }
-      
-      
     }
 
     /**
@@ -501,7 +500,6 @@ export class VistaTarea extends Vista{
      */
     async anadirImagen(){
         let valorimagen = null
-        console.log(this.iImagenes.files[0])
         const archivo = this.iImagenes.files[0]
         const lector = new FileReader()
         lector.addEventListener('load',() => {
